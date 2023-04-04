@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "YFgJ5h08vMJ7z4uyHKdOodfeqpiJ8XZ7QW8fwjRfq8Y=",
+  "Source": "systeminventory_sample",
+  "BasePath": "_content/systeminventory_sample",
+  "Mode": "Default",
+  "ManifestType": "Publish",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
