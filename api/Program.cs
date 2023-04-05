@@ -8,12 +8,20 @@ var builder = WebApplication.CreateBuilder(args);
 // Add database context to DI container using SQLite database.
 builder.Services.AddDbContext<inHouseDbContext>(options =>
 {
-    var path = builder.Configuration.GetConnectionString("inHouseDbConnection");
-    options.UseSqlite(path);
+    // var path = builder.Configuration.GetConnectionString("inHouseDbConnection");
+    // options.UseSqlite(path);
 
-   // var path = builder.Configuration.GetConnectionString("SQLConnection");
-   // options.UseSqlServer(path);
+    var path = builder.Configuration.GetConnectionString("SQLConnection");
+    options.UseSqlServer(path);
+    inHouseDbContext.ConfigPath =path;
 });
+
+//appsetting.jsonを設定
+//IConfiguration config = new ConfigurationBuilder()
+  //  .AddJsonFile("appsettings.json")
+//.AddEnvironmentVariables()
+ //   .Build();
+
 
 // Add controllers to the DI container.
 builder.Services.AddControllers();

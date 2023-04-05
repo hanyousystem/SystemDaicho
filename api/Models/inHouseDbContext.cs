@@ -39,7 +39,7 @@ namespace systeminventory_sample.Models.DbFirst
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // データベース接続文字列の設定
-            //optionsBuilder.UseSqlite("Data Source=inhouse");
+            // optionsBuilder.UseSqlite(ConfigPath);
              optionsBuilder.UseSqlServer(ConfigPath);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
