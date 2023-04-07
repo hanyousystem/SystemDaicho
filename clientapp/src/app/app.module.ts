@@ -14,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { SystemComponent_Gaisei } from './system/system.component_Gaisei';
 import { ShowSystemComponent_Gaisei } from './system/show-system/show-system.component_Gaisei';
+import { ROUTES, RouterModule } from '@angular/router';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +32,6 @@ import { ShowSystemComponent_Gaisei } from './system/show-system/show-system.com
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatTableModule
-
   ],
   providers: [ApiserviceService],
   bootstrap: [AppComponent]
