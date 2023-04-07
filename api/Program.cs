@@ -1,5 +1,7 @@
 using systeminventory_sample.Models.DbFirst;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
+using System.IO;
 
 //このクラス自体がEntrypointの役割を担っている
 var builder = WebApplication.CreateBuilder(args);
@@ -14,6 +16,7 @@ builder.Services.AddDbContext<inHouseDbContext>(options =>
     var path = builder.Configuration.GetConnectionString("SQLConnection");
     options.UseSqlServer(path);
     inHouseDbContext.ConfigPath =path;
+    
 });
 
 //appsetting.jsonを設定
@@ -25,11 +28,12 @@ builder.Services.AddDbContext<inHouseDbContext>(options =>
 
 // Add controllers to the DI container.
 builder.Services.AddControllers();
-
+ 
 // Add Swagger/OpenAPI services to the DI container.
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
+builder.Services.AddSwaggerGen();
+ 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -39,16 +43,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
 // Serve static files from wwwroot folder.
 app.UseStaticFiles();
-
 // Enable routing middleware to match incoming requests to an endpoint.
 app.UseRouting();
-
 // Redirect all HTTP requests to HTTPS.
 app.UseHttpsRedirection();
-
 // Allow CORS for all methods, headers and origins.
 app.UseCors(x => x.AllowAnyMethod()
             .AllowAnyHeader()
