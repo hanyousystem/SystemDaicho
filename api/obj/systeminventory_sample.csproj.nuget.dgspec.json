@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dg-user\\systeminventory\\api\\systeminventory_sample.csproj": {}
+    "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dg-user\\systeminventory\\api\\systeminventory_sample.csproj": {
+    "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dg-user\\systeminventory\\api\\systeminventory_sample.csproj",
+        "projectUniqueName": "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj",
         "projectName": "systeminventory_sample",
-        "projectPath": "C:\\Users\\dg-user\\systeminventory\\api\\systeminventory_sample.csproj",
-        "packagesPath": "C:\\Users\\dg-user\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dg-user\\systeminventory\\api\\obj\\",
+        "projectPath": "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj",
+        "packagesPath": "C:\\Users\\e-Stat\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\dg-user\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\e-Stat\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"

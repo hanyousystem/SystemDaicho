@@ -62,7 +62,7 @@ export class ShowSystemComponent_Gaisei implements OnInit {
         return el.id.toString().toLowerCase().includes(
           SystemIdFilter.toString().trim().toLowerCase()
         ) &&
-          el.name.toString().toLowerCase().includes(
+          el.shukanKashitsu.toString().toLowerCase().includes(
             shukanKashituFilter.toString().trim().toLowerCase())
       }
     );

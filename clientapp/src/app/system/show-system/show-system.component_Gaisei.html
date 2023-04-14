@@ -45,10 +45,11 @@
       <!-- <th rowspan="3">主管課室名</th> -->
       <th colspan="2">情報システム責任者</th>
       <th colspan="3">連絡担当者</th>
+      <th rowspan="3">システム種別</th>
       <th colspan="5">開発方式</th>
       <th colspan="5">利用者属性</th>
       <th colspan="5">通信する統計センターの外通信回線の種別</th>
-      <th colspan="5">取り扱う情報の格付</th>
+      <th colspan="4">取り扱う情報の格付</th>
       <th rowspan="3">取り扱う情報の取扱制限</th>
       <th rowspan="3">パッケージ名</th>
       <th rowspan="3">パッケージ開発元</th>
@@ -76,7 +77,6 @@
       <th rowspan="2">統計センター内</th>
       <th rowspan="2">統計局</th>
       <th rowspan="2">他の政府機関</th>
-      <th rowspan="2">地方公共団体</th>
       <th rowspan="2">地方公共団体</th>
       <th rowspan="2">一般利用者（国民等）</th>
       
@@ -115,7 +115,6 @@
       <th rowspan="2">ドメイン名</th>
       <th colspan="4">取り扱う情報の格付</th>
       <th rowspan="2">取り扱う情報の取得制限</th>
-
     </tr>
     
     <tr>
@@ -139,16 +138,16 @@
   <tbody>
              <!--列名の先頭を小文字にしないと取得できない-->
     <tr *ngFor="let dataItem of SystemList">
-      <td>{{dataItem.id}}</td>
+      <td >{{dataItem.id}}</td>
       <td>{{dataItem.kubun}}</td>
       <td>{{dataItem.systemName}}</td>
       <td>{{dataItem.gaiyo}}</td>
-      <td>{{dataItem.shukanKashitu}}</td>
+      <td>{{dataItem.shukanKashitsu}}</td>
       
       <td>{{dataItem.sekinin_Shozoku}}</td>
       <td>{{dataItem.sekinin_Name}}</td>
 
-      <td>{{dataItem.renraku_Director}}</td>
+      <td>{{dataItem.renraku_Shozoku}}</td>
       <td>{{dataItem.renraku_Name}}</td>
       <td>{{dataItem.renraku_Naisen}}</td>
 
@@ -166,23 +165,24 @@
       <td>{{dataItem.user_Localgovernment}}</td>
       <td>{{dataItem.user_Ippan}}</td>
 
-      <td>{{dataItem.outSideSignal_IE}}</td>
-      <td>{{dataItem.outSideSignal_SeifuNW}}</td>
-      <td>{{dataItem.outSideSignal_SINET}}</td>
-      <td>{{dataItem.outSideSignal_LGWIN}}</td>
-      <td>{{dataItem.outSideSignal_Other}}</td>
+      <td>{{dataItem.lineType_IE}}</td>
+      <td>{{dataItem.lineType_SeifuNW}}</td>
+      <td>{{dataItem.lineType_SINET}}</td>
+      <td>{{dataItem.lineType_LGWIN}}</td>
+      <td>{{dataItem.lineType_Other}}</td>
 
-      <td>{{dataItem.handleInfo_Kimitsu3}}</td>
-      <td>{{dataItem.handleInfo_Kimitsu2}}</td>
-      <td>{{dataItem.handleInfo_Kanzen2}}</td>
-      <td>{{dataItem.handleInfo_Kayou2}}</td>
-      <td>{{dataItem.handleInfoLimit}}</td>
+      <td>{{dataItem.infoType_Kimitsu3}}</td>
+      <td>{{dataItem.infoType_Kimitsu2}}</td>
+      <td>{{dataItem.infoType_Kanzen2}}</td>
+      <td>{{dataItem.infoType_Kayo2}}</td>
+      <td>{{dataItem.handlingInfoLimit}}</td>
 
       <td>{{dataItem.packageName}}</td>
       <td>{{dataItem.packageDevName}}</td>
 
       <td>{{dataItem.recentIntro_Jigyosha}}</td>
       <td>{{dataItem.recentIntro_Jiki}}</td>
+      
       <td>{{dataItem.recentMainte_Jigyosha}}</td>
       <td>{{dataItem.recentMainte_Start}}</td>
       <td>{{dataItem.recentMainte_End}}</td>
@@ -197,9 +197,8 @@
       <td>{{dataItem.recentOpe_SameMainte}}</td>
       
       <td>{{dataItem.cloudService_UserUmu}}</td>
-      <td>{{dataItem.cloudService_ServiceName}}</td>
+      <td>{{dataItem.cloudService_SeviceName}}</td>
       <td>{{dataItem.cloudService_Jigyosha}}</td>
-
       <td>{{dataItem.cloudService_ServiceKigyo}}</td>
       <td>{{dataItem.cloudService_Gaiyo}}</td>
       <td>{{dataItem.cloudService_Start}}</td>
@@ -209,7 +208,7 @@
       <td>{{dataItem.cloudService_Kimitsu3}}</td>
       <td>{{dataItem.cloudService_Kimitsu2}}</td>
       <td>{{dataItem.cloudService_Kanzen2}}</td>
-      <td>{{dataItem.cloudService_Kayou2}}</td>
+      <td>{{dataItem.cloudService_Kayo2}}</td>
       <td>{{dataItem.cloudService_Limit}}</td>
 
       <td>{{dataItem.scheduleRenew}}</td>

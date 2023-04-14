@@ -7,15 +7,6 @@ public partial class inHouseSystem_Gaisei
 {
     
     public string? ID { get; set; }
-
-    public string? CategoryName { get; set; }
-
-    public string? Name { get; set; }
-
-    public string? Detail { get; set; }
-
-    public string? ProcessName { get; set; }
-
     public string? Kubun { get; set; }
     public string? SystemName { get; set; }   
     public string? Gaiyo { get; set; }

@@ -2,6 +2,7 @@ using systeminventory_sample.Models.DbFirst;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.IO;
+using systeminventory_sample;
 
 //このクラス自体がEntrypointの役割を担っている
 var builder = WebApplication.CreateBuilder(args);
@@ -18,22 +19,23 @@ builder.Services.AddDbContext<inHouseDbContext>(options =>
     inHouseDbContext.ConfigPath =path;
     
 });
-
+builder.Services.AddLogging(options => options.AddConsole());
 //appsetting.jsonを設定
 //IConfiguration config = new ConfigurationBuilder()
-  //  .AddJsonFile("appsettings.json")
+//  .AddJsonFile("appsettings.json")
 //.AddEnvironmentVariables()
- //   .Build();
+//   .Build();
 
 
 // Add controllers to the DI container.
 builder.Services.AddControllers();
- 
+
 // Add Swagger/OpenAPI services to the DI container.
 builder.Services.AddEndpointsApiExplorer();
 
 builder.Services.AddSwaggerGen();
- 
+builder.Services.AddLogging();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -43,6 +45,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.ConfigureExceptionHandler(app.Logger);
 // Serve static files from wwwroot folder.
 app.UseStaticFiles();
 // Enable routing middleware to match incoming requests to an endpoint.
@@ -57,3 +60,4 @@ app.UseCors(x => x.AllowAnyMethod()
 // Map the endpoints to the controllers and start listening.
 app.UseEndpoints(x => x.MapControllers());
 app.Run();
+

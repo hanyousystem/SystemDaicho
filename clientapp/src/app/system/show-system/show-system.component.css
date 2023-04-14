@@ -6,13 +6,16 @@ table{
   border-collapse: collapse;
   border-spacing:1px;
   table-layout:fixed;
-  /* white-space: nowrap; */
+  white-space: pre-wrap;
 }
 
 td{
    /*セル内折り返しあり */
   word-wrap: break-word;
 }
+/* .pre-wrap {
+  white-space: pre-wrap;
+} */
 thead{
   text-align:center;
   /* vertical-align: middle; */

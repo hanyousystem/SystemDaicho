@@ -13,7 +13,7 @@ export class ShowSystemComponent implements OnInit {
   depart: any; // システムデータ
 
   SystemIdFilter = ""; // システムIDフィルター
-  shukanKashituFilter = ""; // システム名フィルター
+  shukanKashitsuFilter = ""; // システム名フィルター
   SystemListWithoutFilter: any = []; // フィルター前のシステムリスト
   @ViewChild('closebutton') closebutton?: ElementRef;
 
@@ -55,15 +55,15 @@ export class ShowSystemComponent implements OnInit {
   // システムリストをフィルターする
   FilterFn() {
     var SystemIdFilter = this.SystemIdFilter;
-    var shukanKashituFilter = this.shukanKashituFilter;
+    var shukanKashitsuFilter = this.shukanKashitsuFilter;
 
     this.SystemList = this.SystemListWithoutFilter.filter(
       function (el: any) {
         return el.id.toString().toLowerCase().includes(
           SystemIdFilter.toString().trim().toLowerCase()
         ) &&
-          el.shukanKashitu.toString().toLowerCase().includes(
-            shukanKashituFilter.toString().trim().toLowerCase())
+          el.shukanKashitsu.toString().toLowerCase().includes(
+            shukanKashitsuFilter.toString().trim().toLowerCase())
       }
     );
   }

@@ -29,8 +29,6 @@ public class inHouseSystemController_Gaisei : ControllerBase
                     select new alldata_Gaisei
                     {
                          ID = system.ID,
-                         Name = system.Name,
-                         Detail = system.Detail,
                          Kubun = system.Kubun,
                          SystemName = system.SystemName,
                          Gaiyo = system.Gaiyo,
@@ -106,8 +104,6 @@ public class inHouseSystemController_Gaisei : ControllerBase
                      select new alldata_Gaisei
                      {
                          ID = system.ID,
-                         Name = system.Name,
-                         Detail = system.Detail,
                          Kubun = system.Kubun,
                          SystemName = system.SystemName,
                          Gaiyo = system.Gaiyo,
@@ -224,15 +220,6 @@ public class alldata_Gaisei
 {
   
     public string? ID { get; set; }
-
-    public string? CategoryName { get; set; }
-
-    public string? Name { get; set; }
-
-    public string? Detail { get; set; }
-
-    public string? ProcessName { get; set; }
-
     public string? Kubun { get; set; }
     public string? SystemName { get; set; }   
     public string? Gaiyo { get; set; }

@@ -10,6 +10,7 @@ export class ApiserviceService {
   readonly apiUrl_Gaisei = 'https://localhost:7043/inHouseSystemController_Gaisei';  // APIのURL
   readonly apiUrl2 = 'https://localhost:7043/Process';  // 別のAPIのURL
   readonly apiUrl3 = 'https://localhost:7043/SystemCategories';  // 別のAPIのURL
+
   constructor(private http: HttpClient) { }
 
 
