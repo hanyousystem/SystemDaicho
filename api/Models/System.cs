@@ -59,6 +59,7 @@ public partial class inHouseSystem
     public string? User_OtherSeifu { get; set; }   
     public string? User_Localgovernment { get; set; }
     public string? User_Ippan { get; set; }
+    
     public string? SysConfig { get; set; }   
     public string? LineType_IE { get; set; }
     public string? LineType_SeifuNW { get; set; }
