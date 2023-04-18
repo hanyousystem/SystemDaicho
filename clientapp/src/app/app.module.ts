@@ -12,6 +12,7 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { SystemComponent_Gaisei } from './system/system.component_Gaisei';
 import { ShowSystemComponent_Gaisei } from './system/show-system/show-system.component_Gaisei';
 @NgModule({
@@ -30,7 +31,8 @@ import { ShowSystemComponent_Gaisei } from './system/show-system/show-system.com
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatButtonToggleModule
   ],
   providers: [ApiserviceService],
   bootstrap: [AppComponent]

@@ -4,3 +4,13 @@
     margin: 10%;
     padding: 10%;
   }
+  /* .mat-button-toggle {
+    margin-top: 5px !important;
+    background-color:gray;
+} */
+.mat-button-toggle:hover {
+    background-color:dodgerblue;
+}
+.mat-button-toggle-checked {
+    background-color:dodgerblue;
+} 
