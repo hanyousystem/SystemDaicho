@@ -1,6 +1,13 @@
 <div class="d-flex flex-row bd-highlight mb-9">
   <div class="p-2 w-100 bd-highlight">
-
+    
+    <button (click)="addSystem()" *ngIf="depart.Id == ''" class="btn btn-primary">
+      追加
+    </button>
+    
+    <button (click)="updateSystem()" *ngIf="depart.Id !=''" class="btn btn-primary">
+      更新
+    </button>
     <div class="input-group mb-12" *ngIf="depart.Id == ''">
       <span class="input-group-text">情報システムID</span>
       <input type="text" class="form-control" [(ngModel)]="Id">
@@ -293,10 +300,3 @@
   </div>
 
 </div>
-<button (click)="addSystem()" *ngIf="depart.Id == ''" class="btn btn-primary">
-  追加
-</button>
-
-<button (click)="updateSystem()" *ngIf="depart.Id !=''" class="btn btn-primary">
-  更新
-</button>

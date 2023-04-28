@@ -79,7 +79,7 @@ export class ShowSystemComponent implements OnInit {
   }
   editClick(item: any) {
     this.depart = item;
-    this.ModalTitle = "システム編集";
+    this.ModalTitle = "詳細情報";
     this.ActivateAddEditSystemComp = true;
   }
   deleteClick(item: any) {

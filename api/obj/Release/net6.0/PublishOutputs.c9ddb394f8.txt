@@ -9,6 +9,8 @@ C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Azure.I
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Humanizer.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\MessagePack.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\MessagePack.Annotations.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.AspNetCore.Authentication.Negotiate.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.AspNetCore.Connections.Abstractions.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.AspNetCore.Razor.Language.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Build.dll
@@ -43,6 +45,7 @@ C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microso
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Extensions.DependencyModel.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Extensions.Features.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Extensions.Logging.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\Microsoft.Extensions.Options.dll
@@ -89,8 +92,10 @@ C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.Composition.Runtime.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.Composition.TypedParts.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.Configuration.ConfigurationManager.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.DirectoryServices.Protocols.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.Drawing.Common.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.IO.Pipelines.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.Memory.Data.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.Reflection.MetadataLoadContext.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\System.Runtime.Caching.dll
@@ -285,6 +290,9 @@ C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtime
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\win-arm64\native\e_sqlite3.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\win-x64\native\e_sqlite3.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\win-x86\native\e_sqlite3.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\linux\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\osx\lib\net6.0\System.DirectoryServices.Protocols.dll
+C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\win\lib\net6.0\System.DirectoryServices.Protocols.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\e-Stat\Documents\systeminventory\api\bin\Release\net6.0\publish\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll

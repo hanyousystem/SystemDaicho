@@ -1,5 +1,6 @@
 using systeminventory_sample.Models.DbFirst;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Negotiate;
 using System.Text;
 using System.IO;
 using systeminventory_sample;
@@ -34,6 +35,12 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
 
+// builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme).AddNegotiate();
+// builder.Services.AddAuthorization(options =>
+// {
+//     options.FallbackPolicy = options.DefaultPolicy;
+// });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -44,10 +51,14 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.ConfigureExceptionHandler(app.Logger);
+
+// app.UseAuthentication();
+// app.UseAuthorization();
 // Serve static files from wwwroot folder.
 app.UseStaticFiles();
 // Enable routing middleware to match incoming requests to an endpoint.
 app.UseRouting();
+
 // Redirect all HTTP requests to HTTPS.
 app.UseHttpsRedirection();
 // Allow CORS for all methods, headers and origins.
