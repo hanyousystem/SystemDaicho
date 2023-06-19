@@ -18,29 +18,29 @@ namespace systeminventory_sample.Models.DbFirst
         {
         }
         //appsetting.jsonを設定
-        public static string ConfigPath { get; set; }= null!;
+        public static string ConfigPath { get; set; } = null!;
         //private static IConfiguration Config { get; set; }= null!;
-       // public static void configurationInitialize(IConfiguration configuration)
-       // {
+        // public static void configurationInitialize(IConfiguration configuration)
+        // {
         //    Config =configuration;
         //}
         // ProcessControlテーブルに対応するDbSet
-        public virtual DbSet<ProcessControl> ProcessControls { get; set; }= null!;
+        public virtual DbSet<ProcessControl> ProcessControls { get; set; } = null!;
 
         // inHouseSystemテーブルに対応するDbSet
         // テーブルを取得⇒列名が同じ名前のプロパティに対してセットを行うため、テーブルの列名がずれていないか確認
-        public virtual DbSet<inHouseSystem> Systems { get; set; }= null!;
+        public virtual DbSet<inHouseSystem> Systems { get; set; } = null!;
         // inHouseSystemテーブルに対応するDbSet
-        public virtual DbSet<inHouseSystem_Gaisei> Systems_Gaisei { get; set; }= null!;
+        public virtual DbSet<inHouseSystem_Gaisei> Systems_Gaisei { get; set; } = null!;
         // SystemCategoryテーブルに対応するDbSet
-        public virtual DbSet<SystemCategory> SystemCategories { get; set; }= null!;
+        public virtual DbSet<SystemCategory> SystemCategories { get; set; } = null!;
 
         // DbContextOptionsBuilderに対しての設定
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // データベース接続文字列の設定
-            // optionsBuilder.UseSqlite(ConfigPath);
-             optionsBuilder.UseSqlServer(ConfigPath);
+            optionsBuilder.UseSqlite(ConfigPath);
+            // optionsBuilder.UseSqlServer(ConfigPath);
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

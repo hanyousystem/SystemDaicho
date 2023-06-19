@@ -1,25 +1,41 @@
-table{
-  /*テーブルの外の枠線 */
-  border:3px black solid;
-  width:1200%;
-  /* border-collapse: separate; */
-  border-collapse: collapse;
-  border-spacing:1px;
-  table-layout:fixed;
+table {
+  border: 3px black solid;
+  width: 1200%;
+  border-collapse: separate;
+  /* セル間の枠線を表示するために変更 */
+  border-spacing: 0px;
+  /* セル間のスペースを調整 */
+  table-layout: fixed;
   white-space: pre-wrap;
-  /* white-space: nowrap; */
 }
 
-td{
-   /*セル内折り返しあり */
-  word-wrap: break-word;
-}
-thead{
-  text-align:center;
-  /* vertical-align: middle; */
-}
-th,td{
-   /*テーブル内の枠線 */
-  border:1px black solid;
+thead {
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
 }
 
+th {
+  border-bottom: 1px black solid;
+  border: 1px black solid;
+}
+
+td {
+  border: 1px black solid;
+}
+
+tbody {}
+
+tbody tr:first-child td {
+  border-top: 1px black solid;
+}
+
+thead th:first-child {
+  border-left: 1px black solid;
+}
+
+thead th:last-child {
+  border-right: 1px black solid;
+}

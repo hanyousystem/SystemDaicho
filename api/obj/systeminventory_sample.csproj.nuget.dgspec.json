@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj": {}
+    "/home/basil/project/SystemDaicho/api/systeminventory_sample.csproj": {}
   },
   "projects": {
-    "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj": {
+    "/home/basil/project/SystemDaicho/api/systeminventory_sample.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj",
+        "projectUniqueName": "/home/basil/project/SystemDaicho/api/systeminventory_sample.csproj",
         "projectName": "systeminventory_sample",
-        "projectPath": "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\systeminventory_sample.csproj",
-        "packagesPath": "C:\\Users\\e-Stat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\e-Stat\\Documents\\systeminventory\\api\\obj\\",
+        "projectPath": "/home/basil/project/SystemDaicho/api/systeminventory_sample.csproj",
+        "packagesPath": "/home/basil/.nuget/packages/",
+        "outputPath": "/home/basil/project/SystemDaicho/api/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\e-Stat\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/basil/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -79,7 +79,8 @@
             "net47",
             "net471",
             "net472",
-            "net48"
+            "net48",
+            "net481"
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -91,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.113\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.400/RuntimeIdentifierGraph.json"
         }
       }
     }
