@@ -29,7 +29,7 @@ namespace systeminventory_sample.Models.DbFirst
 
         // inHouseSystemテーブルに対応するDbSet
         // テーブルを取得⇒列名が同じ名前のプロパティに対してセットを行うため、テーブルの列名がずれていないか確認
-        public virtual DbSet<inHouseSystem> Systems { get; set; } = null!;
+        public virtual DbSet<inHouseSystems> Systems { get; set; } = null!;
         // inHouseSystemテーブルに対応するDbSet
         public virtual DbSet<inHouseSystem_Gaisei> Systems_Gaisei { get; set; } = null!;
         // SystemCategoryテーブルに対応するDbSet
@@ -53,10 +53,9 @@ namespace systeminventory_sample.Models.DbFirst
             });
 
             // inHouseSystemテーブルの定義
-            modelBuilder.Entity<inHouseSystem>(entity =>
+            modelBuilder.Entity<inHouseSystems>(entity =>
             {
                 entity
-                    .HasNoKey()
                     .ToTable("Naisei"); // inHouseSystemテーブルに対応するテーブル名
             });
 
@@ -64,7 +63,6 @@ namespace systeminventory_sample.Models.DbFirst
             modelBuilder.Entity<inHouseSystem_Gaisei>(entity =>
             {
                 entity
-                    .HasNoKey()
                     .ToTable("Gaisei"); // inHouseSystemテーブルに対応するテーブル名
             });
 
