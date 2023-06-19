@@ -1,3 +1,4 @@
+
 <!-- <button type="button" class="btn btn-primary m-2 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal"
   (click)="addClick()">
    追加
@@ -15,25 +16,26 @@
         <button type="button" #closebutton class="close" data-bs-dismiss="modal" aria-label="Close"
           (click)="closeClick()">
           <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
+        </button> 
+       </div>
+      <div class="modal-body"> 
         <!--システム追加・編集フォームを表示するためのコンポーネント -->
         <app-add-edit-system [depart]="depart" *ngIf="ActivateAddEditSystemComp" (newItemEvent)="callback($event)">
         </app-add-edit-system>
-      </div>
+     </div>
     </div>
   </div>
 </div>
 
 <!-- <div class="table-contents"> -->
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <!-- <th rowspan="3">編集・削除</th> -->
-      <th rowspan="3">
-        <!-- ngModelでテキストボックスに対する入力値をTypescriptに反映させそれを用いてFilterを行う。 -->
-        <!-- <button type="button" class="btn btn-light" (click)="sortResult('id',true)">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <!-- <th rowspan="3">編集・削除</th> -->
+        <th rowspan="3">
+          <div class="d-flex flex-row">
+            <!-- ngModelでテキストボックスに対する入力値をTypescriptに反映させそれを用いてFilterを行う。 -->
+            <!-- <button type="button" class="btn btn-light" (click)="sortResult('id',true)">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-arrow-down-square-fill" viewBox="0 0 16 16">
                 <path
@@ -47,137 +49,140 @@
                   d="M2 16a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2zm6.5-4.5V5.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 5.707V11.5a.5.5 0 0 0 1 0z" />
               </svg>
             </button> -->
-        情報システムID
-      </th>
-      <!-- <th rowspan="3">システムID</th> -->
-      <th rowspan="3">区分</th>
-
-      <th rowspan="3">情報システム名</th>
-      <th rowspan="3">概要</th>
-
-      <th rowspan="3">
-        <!-- ngModelでテキストボックスに対する入力値をTypescriptに反映させそれを用いてFilterを行う。 -->
-        <input class="form-control m-2" [(ngModel)]="shukanKashitsuFilter" (keyup)="FilterFn()" placeholder="Filter">
-        主管課室名
-      </th>
-      <!-- <th rowspan="3">主管課室名</th> -->
-
-      <th colspan="2">情報システム責任者</th>
-      <th colspan="3">連絡担当者</th>
-      <th colspan="11">システム種別</th>
-      <th colspan="9">開発規模(開発)</th>
-      <th colspan="9">開発規模(審査)</th>
-      <th colspan="9">開発規模(その他)</th>
-      <th colspan="5">利用者属性</th>
-      <th rowspan="3">システム構成（概要フロー等）</th>
-      <th colspan="5">通信する統計センター通信回線の種別</th>
-      <th colspan="4">取り扱う情報の格付け</th>
-      <th rowspan="3">取り扱う情報の取扱制限</th>
-      <th colspan="4">調査規模</th>
-    </tr>
-
-    <tr>
-      <th rowspan="2">所属及び役職</th>
-      <th rowspan="2">氏名</th>
-
-      <th rowspan="2">所属及び役職</th>
-      <th rowspan="2">氏名</th>
-      <th rowspan="2">内線番号</th>
-
-      <th rowspan="2">進行管理システム</th>
-      <th rowspan="2" style="border-right: none;">チェックシステム</th>
-      <th style="border-left: none;"></th>
-
-      <th rowspan="2">訂正システム</th>
-      <th rowspan="2">個別データ作成</th>
-      <th rowspan="2" style="border-right: none;">サマリーシステム</th>
-      <th colspan="2" style="border-left: none;"></th>
-      <th rowspan="2" style="border-right: none;">審査システム</th>
-      <th style="border-left: none;"></th>
-      <th rowspan="2">その他のシステム（内容を入力）</th>
-
-      <th colspan="6">プログラム本数</th>
-      <th colspan="3">LOC</th>
-
-      <th colspan="6">プログラム本数</th>
-      <th colspan="3">LOC</th>
-
-      <th colspan="6">プログラム本数</th>
-      <th colspan="3">LOC</th>
-
-      <th rowspan="2">統計センター内</th>
-      <th rowspan="2">統計局</th>
-      <th rowspan="2">他の政府機関</th>
-      <th rowspan="2">地方公共団体</th>
-      <th rowspan="2">一般利用者（国民等）</th>
-
-      <th rowspan="2">インターネット</th>
-      <th rowspan="2">政府共通NW</th>
-      <th rowspan="2">SINET</th>
-      <th rowspan="2">LGWIN</th>
-      <th rowspan="2">その他</th>
-
-      <th rowspan="2">機密性3情報</th>
-      <th rowspan="2">機密性2情報</th>
-      <th rowspan="2">完全性2情報</th>
-      <th rowspan="2">可用性2情報</th>
-
-      <th rowspan="2">調査対象数</th>
-      <th rowspan="2">チェック数</th>
-      <th rowspan="2">リスト数</th>
-      <th rowspan="2">結果表数</th>
-    </tr>
-
-    <tr>
-      <th>データチェックプログラム作成支援システム</th>
-
-      <th>汎用サマリーシステム</th>
-      <th>汎用DBサマリーシステム</th>
-
-      <th>Adam-Report</th>
-
-      <th>VB.net</th>
-      <th>C#</th>
-      <th>ExcelVBA</th>
-      <th>Access</th>
-      <th>R</th>
-      <th>その他</th>
-
-      <th>VB.net</th>
-      <th>C#</th>
-      <th>ExcelVBA</th>
-
-      <th>VB.net</th>
-      <th>C#</th>
-      <th>ExcelVBA</th>
-      <th>Access</th>
-      <th>R</th>
-      <th>その他</th>
-
-      <th>VB.net</th>
-      <th>C#</th>
-      <th>ExcelVBA</th>
-
-      <th>VB.net</th>
-      <th>C#</th>
-      <th>ExcelVBA</th>
-      <th>Access</th>
-      <th>R</th>
-      <th>その他</th>
-
-      <th>VB.net</th>
-      <th>C#</th>
-      <th>ExcelVBA</th>
-
-    </tr>
-
-  </thead>
-  <tbody>
-    <!--列名の先頭を小文字にしないと取得できない-->
-    <tr *ngFor="let dataItem of SystemList">
-      <!--<td style="width: auto;"> -->
-      <!-- 編集ボタン -->
-      <!-- <button  type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+          </div>
+          情報システムID
+        </th>
+        <!-- <th rowspan="3">システムID</th> -->
+        <th rowspan="3">区分</th>
+  
+        <th rowspan="3">情報システム名</th>
+        <th rowspan="3">概要</th>
+        
+        <th rowspan="3">
+          <div class="d-flex flex-row">
+            <!-- ngModelでテキストボックスに対する入力値をTypescriptに反映させそれを用いてFilterを行う。 -->
+            <input class="form-control m-2" [(ngModel)]="shukanKashitsuFilter" (keyup)="FilterFn()" placeholder="Filter">
+          </div>
+          主管課室名
+        </th>
+        <!-- <th rowspan="3">主管課室名</th> -->
+  
+        <th colspan="2">情報システム責任者</th>
+        <th colspan="3">連絡担当者</th>
+        <th colspan="11">システム種別</th>
+        <th colspan="9">開発規模(開発)</th>
+        <th colspan="9">開発規模(審査)</th>
+        <th colspan="9">開発規模(その他)</th>
+        <th colspan="5">利用者属性</th>
+        <th rowspan="3" >システム構成（概要フロー等）</th>
+        <th colspan="5">通信する統計センター通信回線の種別</th>
+        <th colspan="4">取り扱う情報の格付け</th>
+        <th rowspan="3">取り扱う情報の取扱制限</th>
+        <th colspan="4">調査規模</th>
+      </tr>
+  
+      <tr>
+        <th rowspan="2">所属及び役職</th>
+        <th rowspan="2">氏名</th>
+  
+        <th rowspan="2">所属及び役職</th>
+        <th rowspan="2">氏名</th>
+        <th rowspan="2">内線番号</th>
+  
+        <th rowspan="2">進行管理システム</th>
+        <th rowspan="2" style="border-right: none;">チェックシステム</th>
+        <th style="border-left: none;" ></th>
+  
+        <th rowspan="2">訂正システム</th>
+        <th rowspan="2">個別データ作成</th>
+        <th rowspan="2" style="border-right: none;">サマリーシステム</th>
+        <th colspan="2" style="border-left: none;" ></th>
+        <th rowspan="2" style="border-right: none;">審査システム</th>
+        <th style="border-left: none;" ></th>
+        <th rowspan="2">その他のシステム（内容を入力）</th>
+  
+        <th colspan="6">プログラム本数</th>
+        <th colspan="3">LOC</th>
+  
+        <th colspan="6">プログラム本数</th>
+        <th colspan="3">LOC</th>
+  
+        <th colspan="6">プログラム本数</th>
+        <th colspan="3">LOC</th>
+  
+        <th rowspan="2">統計センター内</th>
+        <th rowspan="2">統計局</th>
+        <th rowspan="2">他の政府機関</th>
+        <th rowspan="2">地方公共団体</th>
+        <th rowspan="2">一般利用者（国民等）</th>
+  
+        <th rowspan="2">インターネット</th>
+        <th rowspan="2">政府共通NW</th>
+        <th rowspan="2">SINET</th>
+        <th rowspan="2">LGWIN</th>
+        <th rowspan="2">その他</th>
+  
+        <th rowspan="2">機密性3情報</th>
+        <th rowspan="2">機密性2情報</th>
+        <th rowspan="2">完全性2情報</th>
+        <th rowspan="2">可用性2情報</th>
+  
+        <th rowspan="2" >調査対象数</th>
+        <th rowspan="2">チェック数</th>
+        <th rowspan="2">リスト数</th>
+        <th rowspan="2">結果表数</th>
+      </tr>
+      
+      <tr>
+         <th>データチェックプログラム作成支援システム</th>
+  
+         <th>汎用サマリーシステム</th>
+         <th>汎用DBサマリーシステム</th>
+       
+         <th>Adam-Report</th>
+  
+         <th>VB.net</th>
+         <th>C#</th>
+         <th>ExcelVBA</th>
+         <th>Access</th>
+         <th>R</th>
+         <th>その他</th>
+  
+         <th>VB.net</th>
+         <th>C#</th>
+         <th>ExcelVBA</th>
+  
+         <th>VB.net</th>
+         <th>C#</th>
+         <th>ExcelVBA</th>
+         <th>Access</th>
+         <th>R</th>
+         <th>その他</th>
+  
+         <th>VB.net</th>
+         <th>C#</th>
+         <th>ExcelVBA</th>
+  
+         <th>VB.net</th>
+         <th>C#</th>
+         <th>ExcelVBA</th>
+         <th>Access</th>
+         <th>R</th>
+         <th>その他</th>
+  
+         <th>VB.net</th>
+         <th>C#</th>
+         <th>ExcelVBA</th>   
+  
+      </tr>
+  
+   </thead>    
+   <tbody>
+       <!--列名の先頭を小文字にしないと取得できない-->
+       <tr *ngFor="let dataItem of SystemList">
+           <!--<td style="width: auto;"> -->
+            <!-- 編集ボタン -->
+            <!-- <button  type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
             (click)="editClick(dataItem)" data-backdrop="static" data-keyboard="false">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor"
               xmlns="http://www.w3.org/2000/svg">
@@ -187,8 +192,8 @@
                 d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
             </svg>
           </button>  -->
-      <!--削除ボタン-->
-      <!-- <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
+          <!--削除ボタン-->
+            <!-- <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
             <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
               xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd"
@@ -197,87 +202,87 @@
           </button> 
         </td> -->
 
-      <td>{{dataItem.id}}</td>
-      <td>{{dataItem.kubun}}</td>
-      <td>{{dataItem.systemName}}</td>
-      <td>{{dataItem.gaiyo}}</td>
-      <td>{{dataItem.shukanKashitsu}}</td>
-
-      <td>{{dataItem.sekinin_Shozoku}}</td>
-      <td>{{dataItem.sekinin_Name}}</td>
-
-      <td>{{dataItem.renraku_Shozoku}}</td>
-      <td>{{dataItem.renraku_Name}}</td>
-      <td>{{dataItem.renraku_Naisen}}</td>
-
-      <td>{{dataItem.sysType_ProgressSys}}</td>
-      <td>{{dataItem.sysType_ChkSys}}</td>
-      <td>{{dataItem.sysType_ChkSupportSys}}</td>
-      <td>{{dataItem.sysType_CrtSys}}</td>
-      <td>{{dataItem.sysType_Kobetesu}}</td>
-      <td>{{dataItem.sysType_Summary}}</td>
-      <td>{{dataItem.sysType_HanyoSummary}}</td>
-      <td>{{dataItem.sysType_DBSummary}}</td>
-      <td>{{dataItem.sysType_Shinsa}}</td>
-      <td>{{dataItem.sysType_Adam}}</td>
-      <td>{{dataItem.sysType_Other}}</td>
-
-      <td>{{dataItem.devKaihatsu_PGMCnt_VBNet}}</td>
-      <td>{{dataItem.devKaihatsu_PGMCnt_CSharp}}</td>
-      <td>{{dataItem.devKaihatsu_PGMCnt_VBA}}</td>
-      <td>{{dataItem.devKaihatsu_PGMCnt_Access}}</td>
-      <td>{{dataItem.devKaihatsu_PGMCnt_R}}</td>
-      <td>{{dataItem.devKaihatsu_PGMCnt_Other}}</td>
-      <td>{{dataItem.devKaihatsu_LOC_VBNET}}</td>
-      <td>{{dataItem.devKaihatsu_LOC_CSharp}}</td>
-      <td>{{dataItem.devKaihatsu_LOC_VBA}}</td>
-
-      <td>{{dataItem.devShisa_PGMCnt_VBNET}}</td>
-      <td>{{dataItem.devShisa_PGMCnt_CSharp}}</td>
-      <td>{{dataItem.devShisa_PGMCnt_VBA}}</td>
-      <td>{{dataItem.devShisa_PGMCnt_Access}}</td>
-      <td>{{dataItem.devShisa_PGMCnt_R}}</td>
-      <td>{{dataItem.devShisa_PGMCnt_Other}}</td>
-      <td>{{dataItem.devShisa_LOC_VBNET}}</td>
-      <td>{{dataItem.devShisa_LOC_Csharp}}</td>
-      <td>{{dataItem.devShisa_LOC_VBA}}</td>
-
-      <td>{{dataItem.devOther_PGMCnt_VBNET}}</td>
-      <td>{{dataItem.devOther_PGMCnt_CSharp}}</td>
-      <td>{{dataItem.devOther_PGMCnt_VBA}}</td>
-      <td>{{dataItem.devOther_PGMCnt_Access}}</td>
-      <td>{{dataItem.devOther_PGMCnt_R}}</td>
-      <td>{{dataItem.devOther_PGMCnt_Other}}</td>
-      <td>{{dataItem.devOther_LOC_VBNET}}</td>
-      <td>{{dataItem.devOther_LOC_CSharp}}</td>
-      <td>{{dataItem.devOther_LOC_VBA}}</td>
-
-      <td>{{dataItem.user_Center}}</td>
-      <td>{{dataItem.user_Kyoku}}</td>
-      <td>{{dataItem.user_OtherSeifu}}</td>
-      <td>{{dataItem.user_Localgovernment}}</td>
-      <td>{{dataItem.user_Ippan}}</td>
-
-      <td>{{dataItem.sysConfig}}</td>
-
-      <td>{{dataItem.lineType_IE}}</td>
-      <td>{{dataItem.lineType_SeifuNW}}</td>
-      <td>{{dataItem.lineType_SINET}}</td>
-      <td>{{dataItem.lineType_LGWIN}}</td>
-      <td>{{dataItem.lineType_Other}}</td>
-
-      <td>{{dataItem.infoType_Kimitsu3}}</td>
-      <td>{{dataItem.infoType_Kimitsu2}}</td>
-      <td>{{dataItem.infoType_Kanzen2}}</td>
-      <td>{{dataItem.infoType_Kayou2}}</td>
-
-      <td>{{dataItem.handlingInfoLimit}}</td>
-
-      <td>{{dataItem.chosaKibo_ChosaCnt}}</td>
-      <td>{{dataItem.chosaKibo_ChkCnt}}</td>
-      <td>{{dataItem.chosaKibo_ListCnt}}</td>
-      <td>{{dataItem.chosaKibo_KekkahyoCnt}}</td>
-    </tr>
-  </tbody>
-</table>
+        <td>{{dataItem.id}}</td>
+        <td>{{dataItem.kubun}}</td>
+        <td>{{dataItem.systemName}}</td>
+        <td>{{dataItem.gaiyo}}</td>
+        <td>{{dataItem.shukanKashitsu}}</td>
+  
+        <td>{{dataItem.sekinin_Shozoku}}</td>
+        <td>{{dataItem.sekinin_Name}}</td>
+  
+        <td>{{dataItem.renraku_Shozoku}}</td>
+        <td>{{dataItem.renraku_Name}}</td>
+        <td>{{dataItem.renraku_Naisen}}</td>
+  
+        <td>{{dataItem.sysType_ProgressSys}}</td>
+        <td>{{dataItem.sysType_ChkSys}}</td>
+        <td>{{dataItem.sysType_ChkSupportSys}}</td>
+        <td>{{dataItem.sysType_CrtSys}}</td>
+        <td>{{dataItem.sysType_Kobetesu}}</td>
+        <td>{{dataItem.sysType_Summary}}</td>
+        <td>{{dataItem.sysType_HanyoSummary}}</td>
+        <td>{{dataItem.sysType_DBSummary}}</td>
+        <td>{{dataItem.sysType_Shinsa}}</td>
+        <td>{{dataItem.sysType_Adam}}</td>
+        <td>{{dataItem.sysType_Other}}</td>
+  
+        <td>{{dataItem.devKaihatsu_PGMCnt_VBNet}}</td>
+        <td>{{dataItem.devKaihatsu_PGMCnt_CSharp}}</td>
+        <td>{{dataItem.devKaihatsu_PGMCnt_VBA}}</td>
+        <td>{{dataItem.devKaihatsu_PGMCnt_Access}}</td>
+        <td>{{dataItem.devKaihatsu_PGMCnt_R}}</td>
+        <td>{{dataItem.devKaihatsu_PGMCnt_Other}}</td>
+        <td>{{dataItem.devKaihatsu_LOC_VBNET}}</td>
+        <td>{{dataItem.devKaihatsu_LOC_CSharp}}</td>
+        <td>{{dataItem.devKaihatsu_LOC_VBA}}</td>
+  
+        <td>{{dataItem.devShisa_PGMCnt_VBNET}}</td>
+        <td>{{dataItem.devShisa_PGMCnt_CSharp}}</td>
+        <td>{{dataItem.devShisa_PGMCnt_VBA}}</td>
+        <td>{{dataItem.devShisa_PGMCnt_Access}}</td>
+        <td>{{dataItem.devShisa_PGMCnt_R}}</td>
+        <td>{{dataItem.devShisa_PGMCnt_Other}}</td>
+        <td>{{dataItem.devShisa_LOC_VBNET}}</td>
+        <td>{{dataItem.devShisa_LOC_Csharp}}</td>
+        <td>{{dataItem.devShisa_LOC_VBA}}</td>
+  
+        <td>{{dataItem.devOther_PGMCnt_VBNET}}</td>
+        <td>{{dataItem.devOther_PGMCnt_CSharp}}</td>
+        <td>{{dataItem.devOther_PGMCnt_VBA}}</td>
+        <td>{{dataItem.devOther_PGMCnt_Access}}</td>
+        <td>{{dataItem.devOther_PGMCnt_R}}</td>
+        <td>{{dataItem.devOther_PGMCnt_Other}}</td>
+        <td>{{dataItem.devOther_LOC_VBNET}}</td>
+        <td>{{dataItem.devOther_LOC_CSharp}}</td>
+        <td>{{dataItem.devOther_LOC_VBA}}</td>
+  
+        <td>{{dataItem.user_Center}}</td>
+        <td>{{dataItem.user_Kyoku}}</td>
+        <td>{{dataItem.user_OtherSeifu}}</td>
+        <td>{{dataItem.user_Localgovernment}}</td>
+        <td>{{dataItem.user_Ippan}}</td>
+  
+        <td>{{dataItem.sysConfig}}</td>
+  
+        <td>{{dataItem.lineType_IE}}</td>
+        <td>{{dataItem.lineType_SeifuNW}}</td>
+        <td>{{dataItem.lineType_SINET}}</td>
+        <td>{{dataItem.lineType_LGWIN}}</td>
+        <td>{{dataItem.lineType_Other}}</td>
+  
+        <td>{{dataItem.infoType_Kimitsu3}}</td>
+        <td>{{dataItem.infoType_Kimitsu2}}</td>
+        <td>{{dataItem.infoType_Kanzen2}}</td>
+        <td>{{dataItem.infoType_Kayou2}}</td>
+  
+        <td>{{dataItem.handlingInfoLimit}}</td>
+  
+        <td>{{dataItem.chosaKibo_ChosaCnt}}</td>
+        <td>{{dataItem.chosaKibo_ChkCnt}}</td>
+        <td>{{dataItem.chosaKibo_ListCnt}}</td>
+        <td>{{dataItem.chosaKibo_KekkahyoCnt}}</td>
+      </tr>
+    </tbody>
+  </table>
 <!-- </div> -->
