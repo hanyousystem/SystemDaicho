@@ -1,301 +1,290 @@
 <div class="d-flex flex-row bd-highlight mb-9">
+
   <div class="p-2 w-100 bd-highlight">
-    
-    <button (click)="addSystem()" *ngIf="depart.Id == ''" class="btn btn-primary">
+    <button (click)="addSystem()" *ngIf="depart.id == ''" class="btn btn-primary">
       追加
     </button>
-    
-    <button (click)="updateSystem()" *ngIf="depart.Id !=''" class="btn btn-primary">
+    <button (click)="updateSystem()" *ngIf="depart.id !== ''" class="btn btn-primary">
       更新
     </button>
-    <div class="input-group mb-12" *ngIf="depart.Id == ''">
-      <span class="input-group-text">情報システムID</span>
-      <input type="text" class="form-control" [(ngModel)]="Id">
-    </div>
 
     <div class="input-group mb-12">
-      <span class="input-group-text">システム区分</span>
-      <select [(ngModel)]="SystemCategory" name="itemSystemCategory" id="itemSystemCategory"
-        (change)="ChangeSystemCategory($event)" class="form-control">
-        <option *ngFor="let item of CategoryList" [value]="item.Id">
-          {{item.name}}
-        </option>
-      </select>
+      <span class="input-group-text">情報システムID</span>
+      <input type="text" class="form-control" [(ngModel)]="id">
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">区分</span>
+      <input type="text" class="form-control" [(ngModel)]="depart.kubun">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">情報システム名</span>
-      <input type="text" class="form-control" [(ngModel)]="Name">
+      <input type="text" class="form-control" [(ngModel)]="depart.systemName">
     </div>
-  
+
     <div class="input-group mb-12">
       <span class="input-group-text">概要</span>
-      <input type="text" class="form-control" [(ngModel)]="Detail">
+      <input type="text" class="form-control" [(ngModel)]="depart.gaiyo">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">主観課室名</span>
-      <input type="text" class="form-control" [(ngModel)]="Detail">
+      <input type="text" class="form-control" [(ngModel)]="depart.shukanKashitsu">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">情報システム責任者 所属及び役職</span>
-      <select [(ngModel)]="ProcessControl" name="itemProcessControl" id="itemProcessControl"
-        (change)="ChangeProcessControl($event)" class="form-control">
-        <option *ngFor="let item of ProcessControlList" [value]="item.Id">
-          {{item.Name}}
-        </option>
-      </select>
+      <input type="text" class="form-control" [(ngModel)]="depart.sekinin_Shozoku">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">情報システム責任者 氏名</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sekinin_Name">
     </div>
     <div class="input-group mb-12">
-      <span class="input-group-text">連絡担当者 所属及び役職</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <span class="input-group-text">情報システム責任者 氏名</span>
+      <input type="text" class="form-control" [(ngModel)]="depart.renraku_Shozoku">
     </div>
-    <div class="input-group mb-12">
+    <div class=" input-group mb-12">
       <span class="input-group-text">連絡担当者 内線番号</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.renraku_Naisen">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 進行管理システム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_ProgressSys">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 チェックシステム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_ChkSys">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 データチェックプログラム作成支援システム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_ChkSupportSys">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 訂正システム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_CrtSys">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 個別データ作成</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_Kobetsu">
     </div>
     <div class="input-group mb-12">
-      <span class="input-group-text">システム種別 汎用サマリーシステム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <span class="input-group-text">システム種別 サマリーシステム</span>
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_Summary">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 汎用DBサマリーシステム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_HanyoSummary">
+    </div>
+    <div class="input-group mb-12">
+      <span class="input-group-text">システム種別 汎用DBサマリーシステム</span>
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_Shinsa">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 審査システム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
-    </div>
-    <div class="input-group mb-12">
-      <span class="input-group-text">システム種別 審査システム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_Shinsa">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 Adam-Report</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_Adam">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">システム種別 その他のシステム</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysType_Other">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発） VB.NET</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_PGMCnt_VBNet">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発） C#</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_PGMCnt_CSharp">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発） ExcelVBA</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_PGMCnt_VBA">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発） Access</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_PGMCnt_Access">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発） R</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_PGMCnt_R">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発） その他</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_PGMCnt_Other">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発）LOC VB.net</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_LOC_VBNET">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発）LOC C#</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_LOC_CSharp">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（開発）LOC VBA</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devKaihatsu_LOC_VBA">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査） VB.NET</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_PGMCnt_VBNET">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査） C#</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_PGMCnt_CSharp">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査） ExcelVBA</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_PGMCnt_VBA">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査） Access</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_PGMCnt_Access">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査） R</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_PGMCnt_R">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査） その他</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_PGMCnt_Other">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査）LOC VB.net</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_LOC_VBNET">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査）LOC C#</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_LOC_Csharp">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（審査）LOC VBA</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devShisa_LOC_VBA">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他） VB.NET</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_PGMCnt_VBNET">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他） C#</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_PGMCnt_CSharp">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他） ExcelVBA</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_PGMCnt_VBA">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他） Access</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_PGMCnt_Access">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他） R</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_PGMCnt_R">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他） その他</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_PGMCnt_Other">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他）LOC VB.net</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_LOC_VBNET">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他）LOC C#</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_LOC_CSharp">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">開発規模（その他）LOC VBA</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.devOther_LOC_VBA">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">利用者属性 統計センター内</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.user_Center">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">利用者属性 統計局</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.user_Kyoku">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">利用者属性 他の政府機関</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.user_OtherSeifu">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">利用者属性 地方公共団体</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.user_Localgovernment">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">利用者属性 一般利用者</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.user_Ippan">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">利用者属性 システム構成</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.sysConfig">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">通信する統計センター外通信回線の種別 インターネット</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.lineType_IE">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">通信する統計センター外通信回線の種別 政府共通NW</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.lineType_SeifuNW">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">通信する統計センター外通信回線の種別 SINET</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.lineType_SINET">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">通信する統計センター外通信回線の種別 LGWIN</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.lineType_LGWIN">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">通信する統計センター外通信回線の種別 その他</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.lineType_Other">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">取り扱う情報の格付け 機密性3情報</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.infoType_Kimitsu3">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">取り扱う情報の格付け 機密性2情報</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.infoType_Kimitsu2">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">取り扱う情報の格付け 完全性2情報</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.infoType_Kanzen2">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">取り扱う情報の格付け 可用性2情報</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.infoType_Kayo2">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">取り扱う情報の取扱制御</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.handlingInfoLimit">
     </div>
 
     <div class="input-group mb-12">
       <span class="input-group-text">調査機関 調査対象数</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.chosaKibo_ChosaCnt">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">調査機関 チェック数</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.chosaKibo_ChkCnt">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">調査機関 リスト数</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.chosaKibo_ListCnt">
     </div>
     <div class="input-group mb-12">
       <span class="input-group-text">調査機関 結果表数</span>
-      <input type="text" class="form-control" [(ngModel)]="Demographics">
+      <input type="text" class="form-control" [(ngModel)]="depart.chosaKibo_KekkahyoCnt">
     </div>
   </div>
 

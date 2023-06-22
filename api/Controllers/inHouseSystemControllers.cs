@@ -77,14 +77,15 @@ public class inHouseSystemController : ControllerBase
 
     // POSTリクエストに対するアクションメソッドの指定
     [HttpPost]
-    public async Task<ActionResult<systeminventory_sample.Models.DbFirst.inHouseSystems>> PostSystem(systeminventory_sample.Models.DbFirst.inHouseSystems system)
+    public async Task<IActionResult> PostSystem(inHouseSystems system)
     {
         // システムをデータベースに追加
         _context.Systems.Add(system);
         // 変更をデータベースに保存
         await _context.SaveChangesAsync();
         // 追加したシステムを返す
-        return CreatedAtAction(nameof(GetSystems), new { id = system.ID }, system);
+
+        return NoContent();
     }
 
 }

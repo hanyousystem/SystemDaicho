@@ -1,6 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Output, EventEmitter } from '@angular/core';
+import { Naisei } from '../Models/Naise'
+import { UserdataService } from 'src/app/userdata.service';
 
 @Component({
   selector: 'app-add-edit-system',
@@ -9,62 +11,27 @@ import { Output, EventEmitter } from '@angular/core';
 })
 export class AddEditSystemComponent implements OnInit {
 
-  constructor(private service: ApiserviceService) { }
 
-  @Input() depart: any;
+
+  @Input() depart = new Naisei();
   @Output() newItemEvent = new EventEmitter<string>();
-  Id = "";
-  Name = "";
-  Detail = "";
-  ProcessControl: number = 0;
-  SystemCategory: number = 0;
-  CategoryList: any = [];
-  ProcessControlList: any = [];
-  Demographics = "";
+  constructor(private service: ApiserviceService, private userdataservice: UserdataService) { }
+  id: string = '';
 
   ngOnInit(): void {
-    this.Id = this.depart.id;
-    this.Name = this.depart.name;
-    this.Detail = this.depart.detail;
-    this.ProcessControl = this.depart.processName;
-    this.SystemCategory = this.depart.categoryName;
-    this.service.getCategories().subscribe(data => {
-      this.CategoryList = data;
-    });
-    this.service.getProcessControls().subscribe(data => {
-      this.ProcessControlList = data;
-    });
-    this.Demographics = this.depart.Demographics;
+    console.log("ngOninit");
+    console.log(this.depart);
+    this.id = this.depart.id;
   }
 
   addSystem() {
-    var dept = {
-      Id: this.Id,
-      Name: this.Name,
-      Detail: this.Detail,
-      SystemCategory: this.SystemCategory,
-      ProcessControl: this.ProcessControl,
-      Demographics: this.Demographics,
-    };
-    this.service.addSystem(dept).subscribe(res => {
-      this.newItemEvent.emit("");
-    }, error => {
-      console.log(error.toString());
-    }
-    );
+    this.depart.id = this.id;
+    this.service.addSystem(this.depart).subscribe();
   }
 
   updateSystem() {
-    var dept = {
-      Id: this.Id,
-      Name: this.Name,
-      Detail: this.Detail,
-      SystemCategory: this.SystemCategory,
-      ProcessControl: this.ProcessControl,
-      Demographics: this.Demographics,
-    };
-    this.service.updateSystem(dept).subscribe(res => {
-
+    this.depart.id = this.id;
+    this.service.updateSystem(this.depart).subscribe(res => {
       console.log("updateSystem")
       if (res === null) {
         console.log("updateSystem callback1")
@@ -74,14 +41,6 @@ export class AddEditSystemComponent implements OnInit {
         console.log("updateSystem" + res.toString())
       }
     });
-  }
-  ChangeSystemCategory(e: any) {
-    console.log("from " + this.SystemCategory + "ChangeSystemCategory =" + e.target.value);
-    this.SystemCategory = e.target.value;
-  }
-  ChangeProcessControl(e: any) {
-    console.log("from " + this.ProcessControl + "ChangeProcessControl =" + e.target.value);
-    this.ProcessControl = e.target.value;
   }
 }
 
