@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
+import { Naisei } from '../Models/Naise';
+import { Injectable } from '@angular/core';
+import { UserdataService } from 'src/app/userdata.service';
 
 @Component({
   selector: 'app-show-system',
@@ -10,8 +13,8 @@ export class ShowSystemComponent implements OnInit {
   SystemList: any = []; // システムリスト
   ModalTitle = ""; // モーダルタイトル
   ActivateAddEditSystemComp: boolean = false; // システム追加・編集のアクティブ状態
-  depart: any; // システムデータ
-
+  depart!: Naisei; // システムデータ
+  SystemID: string = "";
   SystemIdFilter = ""; // システムIDフィルター
   shukanKashitsuFilter = ""; // システム名フィルター
   SystemListWithoutFilter: any = []; // フィルター前のシステムリスト
@@ -19,6 +22,7 @@ export class ShowSystemComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshDepList(); // 初期表示時にシステムリストを更新する
+    this.depart = new Naisei;
   }
 
   // システム追加・編集画面のコールバック
@@ -70,17 +74,19 @@ export class ShowSystemComponent implements OnInit {
 
   // システム追加ボタンがクリックされた場合
   addClick() {
-    this.depart = {
-      Id: "",
-      Name: ""
-    }
+    this.depart = new Naisei();
+    console.log(this.depart);
     this.ModalTitle = "システム追加";
     this.ActivateAddEditSystemComp = true; // システム追加・編集画面を表示する
   }
-  editClick(item: any) {
+  editClick(item: Naisei) {
+    this.depart = new Naisei;
     this.depart = item;
-    this.ModalTitle = "詳細情報";
-    this.ActivateAddEditSystemComp = true;
+    if (this.depart) {
+      this.userdataservice.setUserdata(this.depart);
+      this.ModalTitle = "システム更新";
+      this.ActivateAddEditSystemComp = true;
+    }
   }
   deleteClick(item: any) {
     if (confirm('削除しますか?')) {
@@ -92,10 +98,11 @@ export class ShowSystemComponent implements OnInit {
 
 
   closeClick() {
+    this.depart = new Naisei();
     this.ActivateAddEditSystemComp = false;
     this.refreshDepList();
   }
 
 
-  constructor(private service: ApiserviceService) { }
+  constructor(private service: ApiserviceService, private userdataservice: UserdataService) { }
 }

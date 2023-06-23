@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Naisei } from './system/Models/Naise';
 
 @Injectable({
   providedIn: 'root'
@@ -21,14 +22,14 @@ export class ApiserviceService {
   getSystemList_Gaisei(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し
     return this.http.get<any[]>(this.apiUrl_Gaisei);
   }
-  addSystem(dept: any): Observable<any> {  // システムを追加するAPI呼び出し
+  addSystem(dept: Naisei): Observable<any> {  // システムを追加するAPI呼び出し
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.post<any>(this.apiUrl, dept, httpOptions);
+    return this.http.post<Naisei>(this.apiUrl, dept, httpOptions);
   }
 
-  updateSystem(dept: any): Observable<any> {  // システムを更新するAPI呼び出し
+  updateSystem(dept: Naisei): Observable<any> {  // システムを更新するAPI呼び出し
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.put<any>(this.apiUrl + dept.Id, dept, httpOptions);
+    return this.http.put<Naisei>(this.apiUrl + `/` + dept.id, dept, httpOptions);
   }
 
   deleteSystem(Id: number): Observable<number> {  // システムを削除するAPI呼び出し
