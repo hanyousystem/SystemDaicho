@@ -11,7 +11,7 @@ import { Location } from '@angular/common';
 export class AddNaiseiComponent {
 
   SystemList!: Naisei;
-  messege: any;
+  messege!: string;
   constructor(
     private userdataservice: UserdataService,
     private apiservice: ApiserviceService,

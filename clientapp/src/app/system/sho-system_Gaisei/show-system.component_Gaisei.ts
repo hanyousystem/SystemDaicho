@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
+import { UserdataService } from 'src/app/userdata.service';
 
 @Component({
   selector: 'app-show-system_Gaisei',
@@ -10,7 +11,7 @@ export class ShowSystemComponent_Gaisei implements OnInit {
   SystemList: any = []; // システムリスト
   ModalTitle = ""; // モーダルタイトル
   ActivateAddEditSystemComp: boolean = false; // システム追加・編集のアクティブ状態
-  depart: any; // システムデータ
+  SystemID!: string;
 
   SystemIdFilter = ""; // システムIDフィルター
   shukanKashituFilter = ""; // システム名フィルター
@@ -70,17 +71,34 @@ export class ShowSystemComponent_Gaisei implements OnInit {
 
   // システム追加ボタンがクリックされた場合
   addClick() {
-    this.depart = {
-      Id: "",
-      Name: ""
+    let maxtID = 0;
+    for (const item of this.SystemList) {
+      const idNumber = parseInt(item.id.slice(1));
+      if (maxtID < idNumber) {
+        maxtID = idNumber;
+      }
     }
-    this.ModalTitle = "システム追加";
-    this.ActivateAddEditSystemComp = true; // システム追加・編集画面を表示する
+    const nextID = `N${(maxtID + 1).toString().padStart(5, '0')}`;
+    console.log(nextID);
+    this.userdataservice.setUserdata(nextID);
+
   }
-  editClick(item: any) {
-    this.depart = item;
-    this.ModalTitle = "システム編集";
-    this.ActivateAddEditSystemComp = true;
+  editClick(SystemID: string) {
+    let isIDExit = false;
+    let kamei!: string;
+    for (const item of this.SystemList) {
+      if (item.id == SystemID) {
+        isIDExit = true;
+        kamei = item.shukanKashitsu;
+        break;
+      }
+    }
+    if (!isIDExit) {
+      alert("IDが見つかりません");
+      return;
+    }
+    console.log(kamei);
+    this.userdataservice.setUserdata(SystemID);
   }
   deleteClick(item: any) {
     if (confirm('削除しますか?')) {
@@ -97,5 +115,7 @@ export class ShowSystemComponent_Gaisei implements OnInit {
   }
 
 
-  constructor(private service: ApiserviceService) { }
+  constructor(private service: ApiserviceService,
+    private userdataservice: UserdataService
+  ) { }
 }
