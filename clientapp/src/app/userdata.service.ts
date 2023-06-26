@@ -5,12 +5,12 @@ import { Naisei } from './system/Models/Naise';
   providedIn: 'root'
 })
 export class UserdataService {
-  private userlist!: Naisei;
+  private userid!: string;
   constructor() { }
-  setUserdata(userlist: Naisei) {
-    this.userlist = userlist;
+  setUserdata(userlist: string) {
+    this.userid = userlist;
   }
   getUserdata() {
-    return this.userlist;
+    return this.userid;
   }
 }

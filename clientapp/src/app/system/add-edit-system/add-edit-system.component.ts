@@ -13,15 +13,12 @@ export class AddEditSystemComponent implements OnInit {
 
 
 
-  @Input() depart = new Naisei();
+  @Input() depart!: Naisei;
   @Output() newItemEvent = new EventEmitter<string>();
   constructor(private service: ApiserviceService, private userdataservice: UserdataService) { }
   id: string = '';
 
   ngOnInit(): void {
-    console.log("ngOninit");
-    console.log(this.depart);
-    this.id = this.depart.id;
   }
 
   addSystem() {

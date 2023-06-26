@@ -11,6 +11,7 @@ export class ApiserviceService {
   readonly apiUrl_Gaisei = 'https://localhost:7043/inHouseSystemController_Gaisei';  // APIのURL
   readonly apiUrl2 = 'https://localhost:7043/Process';  // 別のAPIのURL
   readonly apiUrl3 = 'https://localhost:7043/SystemCategories';  // 別のAPIのURL
+  readonly getADURL = 'https://localhost:7043/inHouseSystem'
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,10 @@ export class ApiserviceService {
   getSystemList(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し
     return this.http.get<any[]>(this.apiUrl);
   }
+  getSystem(SystemID: string): Observable<Naisei> {
+    return this.http.get<Naisei>(this.apiUrl + "/" + SystemID);
+  }
+
   getSystemList_Gaisei(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し
     return this.http.get<any[]>(this.apiUrl_Gaisei);
   }

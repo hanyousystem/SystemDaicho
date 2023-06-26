@@ -3,6 +3,7 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 import { Naisei } from '../Models/Naise';
 import { Injectable } from '@angular/core';
 import { UserdataService } from 'src/app/userdata.service';
+import { max } from 'rxjs';
 
 @Component({
   selector: 'app-show-system',
@@ -13,7 +14,6 @@ export class ShowSystemComponent implements OnInit {
   SystemList: any = []; // システムリスト
   ModalTitle = ""; // モーダルタイトル
   ActivateAddEditSystemComp: boolean = false; // システム追加・編集のアクティブ状態
-  depart!: Naisei; // システムデータ
   SystemID: string = "";
   SystemIdFilter = ""; // システムIDフィルター
   shukanKashitsuFilter = ""; // システム名フィルター
@@ -22,7 +22,6 @@ export class ShowSystemComponent implements OnInit {
 
   ngOnInit(): void {
     this.refreshDepList(); // 初期表示時にシステムリストを更新する
-    this.depart = new Naisei;
   }
 
   // システム追加・編集画面のコールバック
@@ -74,19 +73,34 @@ export class ShowSystemComponent implements OnInit {
 
   // システム追加ボタンがクリックされた場合
   addClick() {
-    this.depart = new Naisei();
-    console.log(this.depart);
-    this.ModalTitle = "システム追加";
-    this.ActivateAddEditSystemComp = true; // システム追加・編集画面を表示する
-  }
-  editClick(item: Naisei) {
-    this.depart = new Naisei;
-    this.depart = item;
-    if (this.depart) {
-      this.userdataservice.setUserdata(this.depart);
-      this.ModalTitle = "システム更新";
-      this.ActivateAddEditSystemComp = true;
+    let maxtID = 0;
+    for (const item of this.SystemList) {
+      const idNumber = parseInt(item.id.slice(1));
+      if (maxtID < idNumber) {
+        maxtID = idNumber;
+      }
     }
+    const nextID = `N${(maxtID + 1).toString().padStart(5, '0')}`;
+    console.log(nextID);
+    this.userdataservice.setUserdata(nextID);
+
+  }
+  editClick(SystemID: string) {
+    let isIDExit = false;
+    let kamei!: string;
+    for (const item of this.SystemList) {
+      if (item.id == SystemID) {
+        isIDExit = true;
+        kamei = item.shukanKashitsu;
+        break;
+      }
+    }
+    if (!isIDExit) {
+      alert("IDが見つかりません");
+      return;
+    }
+    console.log(kamei);
+    this.userdataservice.setUserdata(SystemID);
   }
   deleteClick(item: any) {
     if (confirm('削除しますか?')) {
@@ -98,7 +112,6 @@ export class ShowSystemComponent implements OnInit {
 
 
   closeClick() {
-    this.depart = new Naisei();
     this.ActivateAddEditSystemComp = false;
     this.refreshDepList();
   }
