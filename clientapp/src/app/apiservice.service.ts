@@ -12,7 +12,8 @@ export class ApiserviceService {
   readonly apiUrl_Gaisei = 'https://localhost:7043/inHouseSystemController_Gaisei';  // APIのURL
   readonly apiUrl2 = 'https://localhost:7043/Process';  // 別のAPIのURL
   readonly apiUrl3 = 'https://localhost:7043/SystemCategories';  // 別のAPIのURL
-  readonly getADURL = 'https://localhost:7043/inHouseSystem'
+  readonly getUserdataULR = 'https://localhost:7043/nsc/adinfo/userinfo'
+  readonly getADULR = 'https:localhost:7043/nsc/adinfo/ActiveDirectoryinfo/'
 
   constructor(private http: HttpClient) { }
 
@@ -49,19 +50,19 @@ export class ApiserviceService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.put<Naisei>(this.apiUrl_Gaisei + `/` + dept.id, dept, httpOptions);
   }
+  getUserData(): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    };
+    return this.http.get<any>(this.getUserdataULR, httpOptions);
+  }
+  getADData(userid: string): Observable<any> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.get<any>(this.getADULR + '/' + userid, httpOptions)
+  }
 
   deleteSystem(Id: number): Observable<number> {  // システムを削除するAPI呼び出し
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.delete<number>(this.apiUrl + Id, httpOptions);
-  }
-  getCategories(): Observable<any[]> {  // システムカテゴリーの一覧を取得するAPI呼び出し
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.get<any[]>(this.apiUrl3, httpOptions);
-
-  }
-  getProcessControls(): Observable<any[]> {  // プロセス制御の一覧を取得するAPI呼び出し
-    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.get<any[]>(this.apiUrl2, httpOptions);
-
   }
 }

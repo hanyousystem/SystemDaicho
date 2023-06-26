@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { UserdataService } from 'src/app/userdata.service';
+import { UserID } from '../Models/UserID';
+import { UserAD } from '../Models/UserAD';
 
 @Component({
   selector: 'app-show-system_Gaisei',
@@ -12,6 +14,8 @@ export class ShowSystemComponent_Gaisei implements OnInit {
   ModalTitle = ""; // モーダルタイトル
   ActivateAddEditSystemComp: boolean = false; // システム追加・編集のアクティブ状態
   SystemID!: string;
+  UserID!: UserID;
+  UserAD!: UserAD;
 
   SystemIdFilter = ""; // システムIDフィルター
   shukanKashituFilter = ""; // システム名フィルター
@@ -84,6 +88,8 @@ export class ShowSystemComponent_Gaisei implements OnInit {
 
   }
   editClick(SystemID: string) {
+    this.getUserID();
+    this.getAD(this.UserID.userid);
     let isIDExit = false;
     let kamei!: string;
     for (const item of this.SystemList) {
@@ -96,6 +102,9 @@ export class ShowSystemComponent_Gaisei implements OnInit {
     if (!isIDExit) {
       alert("IDが見つかりません");
       return;
+    }
+    if (kamei != this.UserAD.sectionName) {
+      alert("所属課室のIDを指定してください")
     }
     console.log(kamei);
     this.userdataservice.setUserdata(SystemID);
@@ -114,6 +123,16 @@ export class ShowSystemComponent_Gaisei implements OnInit {
     this.refreshDepList();
   }
 
+  getUserID() {
+    this.service.getUserData().subscribe(
+      data => {
+        this.UserID = data;
+      }
+    )
+  }
+  getAD(id: string) {
+    this.service.getADData(id).subscribe(data => { this.UserAD = data; })
+  }
 
   constructor(private service: ApiserviceService,
     private userdataservice: UserdataService
