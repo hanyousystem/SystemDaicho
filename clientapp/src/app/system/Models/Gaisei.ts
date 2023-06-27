@@ -1,4 +1,4 @@
-interface Gaisei {
+export interface Gaisei {
     id: string;
     kubun: string;
     systemName: string;

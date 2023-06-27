@@ -1,34 +1,16 @@
-
-<!-- <button type="button" class="btn btn-primary m-2 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal"
-  (click)="addClick()">
-   追加
-</button> -->
-
-<!-- Modal（ポップアップダイアログ） -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <!-- ポップアップダイアログのタイトル -->
-        <h5 class="modal-title" id="exampleModalLabel">{{ModalTitle}}</h5>
-        <!-- ポップアップダイアログを閉じるためのボタン -->
-        <button type="button" #closebutton class="close" data-bs-dismiss="modal" aria-label="Close"
-          (click)="closeClick()">
-          <span aria-hidden="true">&times;</span>
-        </button> 
-       </div>
-      <div class="modal-body"> 
-        <!--システム追加・編集フォームを表示するためのコンポーネント -->
-        <app-add-edit-system [depart]="depart" *ngIf="ActivateAddEditSystemComp" (newItemEvent)="callback($event)">
-        </app-add-edit-system>
-     </div>
-    </div>
-  </div>
-</div>
+<a routerLink="/sytem_Gaisei/add" (click)="addClick()" class="btn btn-primary">
+  追加
+</a>
+<a routerLink="/sytem_Gaisei/edit/{{SystemID}}" (click)="editClick(SystemID)" class="btn btn-primary">
+  更新:
+</a>
+<tr>
+  <input class="update" [(ngModel)]="SystemID">
+</tr>
 
 
-<table class="table table-striped" >
+
+<table class="table table-striped">
   <thead>
     <tr>
       <th rowspan="3">情報システムID</th>
@@ -73,13 +55,13 @@
       <th rowspan="2">スクラッチ・カスタマイズ開発の混合</th>
       <th rowspan="2">ソフトウェアパッケージ活用（カスタマイズ無し）</th>
       <th rowspan="2">その他（内容を入力）</th>
- 
+
       <th rowspan="2">統計センター内</th>
       <th rowspan="2">統計局</th>
       <th rowspan="2">他の政府機関</th>
       <th rowspan="2">地方公共団体</th>
       <th rowspan="2">一般利用者（国民等）</th>
-      
+
       <th rowspan="2">インターネット</th>
       <th rowspan="2">政府共通NW</th>
       <th rowspan="2">SINET</th>
@@ -116,34 +98,34 @@
       <th colspan="4">取り扱う情報の格付</th>
       <th rowspan="2">取り扱う情報の取扱制限</th>
     </tr>
-    
+
     <tr>
-       <th>契約開始</th>
-       <th>契約終了</th>
-     
-       <th>契約開始</th>
-       <th>契約終了</th>
+      <th>契約開始</th>
+      <th>契約終了</th>
 
-       <th>契約開始</th>
-       <th>契約終了</th>
+      <th>契約開始</th>
+      <th>契約終了</th>
 
-       <th >機密性3情報</th>
-       <th >機密性2情報</th>
-       <th >完全性2情報</th>
-       <th >可用性2情報</th>
+      <th>契約開始</th>
+      <th>契約終了</th>
+
+      <th>機密性3情報</th>
+      <th>機密性2情報</th>
+      <th>完全性2情報</th>
+      <th>可用性2情報</th>
     </tr>
 
- </thead>
- 
+  </thead>
+
   <tbody>
-             <!--列名の先頭を小文字にしないと取得できない-->
+    <!--列名の先頭を小文字にしないと取得できない-->
     <tr *ngFor="let dataItem of SystemList">
-      <td >{{dataItem.id}}</td>
+      <td>{{dataItem.id}}</td>
       <td>{{dataItem.kubun}}</td>
       <td>{{dataItem.systemName}}</td>
       <td>{{dataItem.gaiyo}}</td>
       <td>{{dataItem.shukanKashitsu}}</td>
-      
+
       <td>{{dataItem.sekinin_Shozoku}}</td>
       <td>{{dataItem.sekinin_Name}}</td>
 
@@ -182,7 +164,7 @@
 
       <td>{{dataItem.recentIntro_Jigyosha}}</td>
       <td>{{dataItem.recentIntro_Jiki}}</td>
-      
+
       <td>{{dataItem.recentMainte_Jigyosha}}</td>
       <td>{{dataItem.recentMainte_Start}}</td>
       <td>{{dataItem.recentMainte_End}}</td>
@@ -195,7 +177,7 @@
       <td>{{dataItem.recentOpe_Kikan}}</td>
       <td>{{dataItem.recentOpe_SameIntro}}</td>
       <td>{{dataItem.recentOpe_SameMainte}}</td>
-      
+
       <td>{{dataItem.cloudService_UserUmu}}</td>
       <td>{{dataItem.cloudService_SeviceName}}</td>
       <td>{{dataItem.cloudService_Jigyosha}}</td>
@@ -212,10 +194,10 @@
       <td>{{dataItem.cloudService_Limit}}</td>
 
       <td>{{dataItem.scheduleRenew}}</td>
-  
+
       <!-- <td> -->
-         <!--編集ボタン-->
-        <!-- <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      <!--編集ボタン-->
+      <!-- <button type="button" class="btn btn-light mr-1" data-bs-toggle="modal" data-bs-target="#exampleModal"
           (click)="editClick(dataItem)" data-backdrop="static" data-keyboard="false">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-pencil-square" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
@@ -225,8 +207,8 @@
               d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
           </svg>
         </button> -->
-        <!--削除ボタン-->
-        <!-- <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
+      <!--削除ボタン-->
+      <!-- <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
           <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
             xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd"

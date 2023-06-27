@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SystemComponent_Gaisei } from './system.component_Gaisei';
+import { AddNaiseiComponent } from './add-naisei.component';
 
-describe('system.component_Gaisei', () => {
-  let component: SystemComponent_Gaisei;
-  let fixture: ComponentFixture<SystemComponent_Gaisei>;
+describe('AddNaiseiComponent', () => {
+  let component: AddNaiseiComponent;
+  let fixture: ComponentFixture<AddNaiseiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SystemComponent_Gaisei ]
+      declarations: [ AddNaiseiComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(SystemComponent_Gaisei);
+    fixture = TestBed.createComponent(AddNaiseiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

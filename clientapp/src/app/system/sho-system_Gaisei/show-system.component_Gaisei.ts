@@ -1,28 +1,29 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
-import { Naisei } from '../Models/Naise';
-import { Injectable } from '@angular/core';
 import { UserdataService } from 'src/app/userdata.service';
+import { UserID } from '../Models/UserID';
+import { UserAD } from '../Models/UserAD';
 
 @Component({
-  selector: 'app-show-system',
-  templateUrl: './show-system.component.html',
-  styleUrls: ['./show-system.component.css']
+  selector: 'app-show-system_Gaisei',
+  templateUrl: './show-system.component_Gaisei.html',
+  styleUrls: ['./show-system.component_Gaisei.css']
 })
-export class ShowSystemComponent implements OnInit {
+export class ShowSystemComponent_Gaisei implements OnInit {
   SystemList: any = []; // システムリスト
   ModalTitle = ""; // モーダルタイトル
   ActivateAddEditSystemComp: boolean = false; // システム追加・編集のアクティブ状態
-  depart!: Naisei; // システムデータ
-  SystemID: string = "";
+  SystemID!: string;
+  UserID!: UserID;
+  UserAD!: UserAD;
+
   SystemIdFilter = ""; // システムIDフィルター
-  shukanKashitsuFilter = ""; // システム名フィルター
+  shukanKashituFilter = ""; // システム名フィルター
   SystemListWithoutFilter: any = []; // フィルター前のシステムリスト
   @ViewChild('closebutton') closebutton?: ElementRef;
 
   ngOnInit(): void {
     this.refreshDepList(); // 初期表示時にシステムリストを更新する
-    this.depart = new Naisei;
   }
 
   // システム追加・編集画面のコールバック
@@ -38,7 +39,7 @@ export class ShowSystemComponent implements OnInit {
 
   // システムリストを更新する
   refreshDepList() {
-    this.service.getSystemList().subscribe(data => {
+    this.service.getSystemList_Gaisei().subscribe(data => {
       this.SystemList = data;
       this.SystemListWithoutFilter = data; // フィルター前のシステムリストを更新する
     });
@@ -59,7 +60,7 @@ export class ShowSystemComponent implements OnInit {
   // システムリストをフィルターする
   FilterFn() {
     var SystemIdFilter = this.SystemIdFilter;
-    var shukanKashitsuFilter = this.shukanKashitsuFilter;
+    var shukanKashituFilter = this.shukanKashituFilter;
 
     this.SystemList = this.SystemListWithoutFilter.filter(
       function (el: any) {
@@ -67,26 +68,46 @@ export class ShowSystemComponent implements OnInit {
           SystemIdFilter.toString().trim().toLowerCase()
         ) &&
           el.shukanKashitsu.toString().toLowerCase().includes(
-            shukanKashitsuFilter.toString().trim().toLowerCase())
+            shukanKashituFilter.toString().trim().toLowerCase())
       }
     );
   }
 
   // システム追加ボタンがクリックされた場合
   addClick() {
-    this.depart = new Naisei();
-    console.log(this.depart);
-    this.ModalTitle = "システム追加";
-    this.ActivateAddEditSystemComp = true; // システム追加・編集画面を表示する
-  }
-  editClick(item: Naisei) {
-    this.depart = new Naisei;
-    this.depart = item;
-    if (this.depart) {
-      this.userdataservice.setUserdata(this.depart);
-      this.ModalTitle = "システム更新";
-      this.ActivateAddEditSystemComp = true;
+    let maxtID = 0;
+    for (const item of this.SystemList) {
+      const idNumber = parseInt(item.id.slice(1));
+      if (maxtID < idNumber) {
+        maxtID = idNumber;
+      }
     }
+    const nextID = `N${(maxtID + 1).toString().padStart(5, '0')}`;
+    console.log(nextID);
+    this.userdataservice.setUserdata(nextID);
+
+  }
+  editClick(SystemID: string) {
+    this.getUserID();
+    this.getAD(this.UserID.userid);
+    let isIDExit = false;
+    let kamei!: string;
+    for (const item of this.SystemList) {
+      if (item.id == SystemID) {
+        isIDExit = true;
+        kamei = item.shukanKashitsu;
+        break;
+      }
+    }
+    if (!isIDExit) {
+      alert("IDが見つかりません");
+      return;
+    }
+    if (kamei != this.UserAD.sectionName) {
+      alert("所属課室のIDを指定してください")
+    }
+    console.log(kamei);
+    this.userdataservice.setUserdata(SystemID);
   }
   deleteClick(item: any) {
     if (confirm('削除しますか?')) {
@@ -98,11 +119,22 @@ export class ShowSystemComponent implements OnInit {
 
 
   closeClick() {
-    this.depart = new Naisei();
     this.ActivateAddEditSystemComp = false;
     this.refreshDepList();
   }
 
+  getUserID() {
+    this.service.getUserData().subscribe(
+      data => {
+        this.UserID = data;
+      }
+    )
+  }
+  getAD(id: string) {
+    this.service.getADData(id).subscribe(data => { this.UserAD = data; })
+  }
 
-  constructor(private service: ApiserviceService, private userdataservice: UserdataService) { }
+  constructor(private service: ApiserviceService,
+    private userdataservice: UserdataService
+  ) { }
 }
