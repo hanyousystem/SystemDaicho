@@ -34,12 +34,6 @@ namespace systeminventory_sample.Models.DbFirst
         public virtual DbSet<inHouseSystem_Gaisei> Systems_Gaisei { get; set; } = null!;
         // SystemCategoryテーブルに対応するDbSet
         public virtual DbSet<SystemCategory> SystemCategories { get; set; } = null!;
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // データベース接続文字列の設定
-           // optionsBuilder.UseSqlite(ConfigPath);
-             optionsBuilder.UseSqlServer(ConfigPath);
-        }
 
         // DbContextOptionsBuilderに対しての設定
 

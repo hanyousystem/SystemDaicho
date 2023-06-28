@@ -14,8 +14,8 @@ builder.Services.AddDbContext<inHouseDbContext>(options =>
 {
     //var path = builder.Configuration.GetConnectionString("inHouseDbConnection");
     //options.UseSqlite(path);
-     var path = builder.Configuration.GetConnectionString("SQLConnection");
-     options.UseSqlServer(path);
+    var path = builder.Configuration.GetConnectionString("SQLConnection");
+    DbContextOptionsBuilder dbContextOptionsBuilder = options.UseSqlServer(path);
     inHouseDbContext.ConfigPath = path;
 });
 builder.Services.AddLogging(options => options.AddConsole());
