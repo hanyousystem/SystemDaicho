@@ -67,6 +67,7 @@ export interface Naisei {
     chosaKibo_ChkCnt: string;
     chosaKibo_ListCnt: string;
     chosaKibo_KekkahyoCnt: string;
+    isDelete: boolean;
 }
 
 export class NaiseiSystem implements Naisei {
@@ -138,5 +139,5 @@ export class NaiseiSystem implements Naisei {
     chosaKibo_ChkCnt: string = '';
     chosaKibo_ListCnt: string = '';
     chosaKibo_KekkahyoCnt: string = '';
-
+    isDelete: boolean = false;
 }

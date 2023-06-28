@@ -79,4 +79,6 @@ public partial class inHouseSystem_Gaisei
     public string? Unyo_SameDonyu { get; set; }
     public string? Unyo_SameHoshu { get; set; }
 
+    public Boolean isDelete { get; set; }
+
 }

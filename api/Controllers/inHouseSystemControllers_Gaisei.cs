@@ -90,7 +90,8 @@ public class inHouseSystemController_Gaisei : ControllerBase
         // 変更をデータベースに保存
         await _context.SaveChangesAsync();
         // 追加したシステムを返す
-        return CreatedAtAction(nameof(GetSystems), new { id = system.ID }, system);
+
+        return NoContent();
     }
 
 }
