@@ -3,6 +3,7 @@ import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Naisei, NaiseiSystem } from '../Models/Naise';
 import { Location } from '@angular/common';
+import { MaxID } from '../Models/MaxID';
 @Component({
   selector: 'app-add-naisei',
   templateUrl: './add-naisei.component.html',
@@ -11,22 +12,34 @@ import { Location } from '@angular/common';
 export class AddNaiseiComponent {
 
   SystemList = new NaiseiSystem();
-  messege!: string;
+  systemid!: string;
   constructor(
     private userdataservice: UserdataService,
     private apiservice: ApiserviceService,
     private location: Location,
   ) { }
-  systemid!: string;
   ngOnInit() {
-    this.systemid = this.userdataservice.getUserdata();
   }
 
-  addSystem() {
-    this.SystemList.id = this.systemid
+  async getID(): Promise<MaxID> {
+    return new Promise<MaxID>((resolve, reject) => {
+      this.apiservice.getMaxID_Naisei().subscribe(
+        data => {
+          resolve(data); // 解決した ID を返す
+        },
+        error => {
+          reject(error); // エラー発生時に reject() を呼び出す
+        }
+      );
+    });
+  }
+
+  async addSystem() {
+    this.SystemList.id = (await this.getID()).id; // ID を取得して反映する
     console.log(this.SystemList.id);
-    this.apiservice.addSystem(this.SystemList).subscribe(
-      (Response) => {
+
+    (await this.apiservice.addSystem(this.SystemList)).subscribe(
+      (response) => {
         alert("追加しました。");
       },
       (error) => {
@@ -34,6 +47,8 @@ export class AddNaiseiComponent {
       }
     );
   }
+
+
   goBack(): void {
     this.location.back();
   }

@@ -102,9 +102,10 @@ export class ShowSystemComponent implements OnInit {
     console.log(kamei);
     this.userdataservice.setUserdata(SystemID);
   }
-  deleteClick(item: any) {
+  deleteClick(item: Naisei) {
     if (confirm('削除しますか?')) {
-      this.service.deleteSystem(item.Id).subscribe(data => {
+      item.isDelete = true;
+      this.service.updateSystem(item).subscribe(data => {
         this.refreshDepList();
       })
     }

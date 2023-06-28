@@ -39,11 +39,27 @@ public class inHouseSystemController : ControllerBase
         return data;
 
     }
+
+
     [HttpGet("maxid")]
-    public async Task<ActionResult<string>> GetMaxID()
+    /*   public async Task<ActionResult<string>> GetMaxID()
+       {
+           var data = await _context.Systems.MaxAsync(s => s.ID);
+           string maxID = data.ToString();
+           var maxIDNum = int.Parse(maxID.Substring(1));
+           var nextID = maxIDNum + 1;
+           return "N" + nextID.ToString("00000");
+
+       }
+       */
+    [HttpGet("nextID")]
+    public async Task<ActionResult<MaxID>> GetNextID()
     {
-        var maxID = await _context.Systems.MaxAsync(s => s.ID);
-        return maxID;
+        var data = await _context.Systems.MaxAsync(s => s.ID);
+        var maxID = data.ToString();
+        var maxIDNum = int.Parse(maxID.Substring(1));
+        var nextID = maxIDNum + 1;
+        return new MaxID { id = "N" + nextID.ToString("00000") };
 
     }
 
@@ -86,6 +102,7 @@ public class inHouseSystemController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> PostSystem(inHouseSystems system)
     {
+        if (system.ID is null) { return BadRequest(); }
         // システムをデータベースに追加
         _context.Systems.Add(system);
         // 変更をデータベースに保存
@@ -94,6 +111,8 @@ public class inHouseSystemController : ControllerBase
 
         return NoContent();
     }
+
+
 
 }
 

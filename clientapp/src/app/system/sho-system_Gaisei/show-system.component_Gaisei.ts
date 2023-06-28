@@ -3,6 +3,7 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 import { UserdataService } from 'src/app/userdata.service';
 import { UserID } from '../Models/UserID';
 import { UserAD } from '../Models/UserAD';
+import { Gaisei } from '../Models/Gaisei';
 
 @Component({
   selector: 'app-show-system_Gaisei',
@@ -109,10 +110,12 @@ export class ShowSystemComponent_Gaisei implements OnInit {
     console.log(kamei);
     this.userdataservice.setUserdata(SystemID);
   }
-  deleteClick(item: any) {
+  deleteClick(item: Gaisei) {
     if (confirm('削除しますか?')) {
-      this.service.deleteSystem(item.Id).subscribe(data => {
+      item.isDelete = true;
+      this.service.updateSystem_Gaisei(item).subscribe(data => {
         this.refreshDepList();
+        if (Response) { alert(item.id + `を削除しました。`) }
       })
     }
   }

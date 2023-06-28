@@ -39,11 +39,14 @@ public class inHouseSystemController_Gaisei : ControllerBase
         return data;
 
     }
-    [HttpGet("maxid")]
-    public async Task<ActionResult<string>> GetMaxID()
+    [HttpGet("nextID")]
+    public async Task<ActionResult<MaxID>> GetNextID()
     {
-        var maxID = await _context.Systems_Gaisei.MaxAsync(s => s.ID);
-        return maxID;
+        var data = await _context.Systems_Gaisei.MaxAsync(s => s.ID);
+        var maxID = data.ToString();
+        var maxIDNum = int.Parse(maxID.Substring(1));
+        var nextID = maxIDNum + 1;
+        return new MaxID { id = "N" + nextID.ToString("00000") };
 
     }
 

@@ -4,6 +4,7 @@ import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Location } from '@angular/common';
 import { NaiseiSystem } from '../Models/Naise';
+import { MaxID } from '../Models/MaxID';
 
 @Component({
   selector: 'app-add-gaisei',
@@ -18,17 +19,29 @@ export class AddGaiseiComponent {
     private apiservice: ApiserviceService,
     private location: Location,
   ) { }
-  systemid!: string;
+  systemid!: MaxID;
   ngOnInit() {
     this.SystemList = new GaiseiSystem
-    this.systemid = this.userdataservice.getUserdata();
   }
 
-  addSystem() {
-    this.SystemList.id = this.systemid
+  async getID(): Promise<MaxID> {
+    return new Promise<MaxID>((resolve, reject) => {
+      this.apiservice.getMaxID_Gaisei().subscribe(
+        data => {
+          resolve(data); // 解決した ID を返す
+        },
+        error => {
+          reject(error); // エラー発生時に reject() を呼び出す
+        }
+      );
+    });
+  }
+
+  async addSystem() {
+    this.SystemList.id = (await this.getID()).id; // ID を取得して反映する
     console.log(this.SystemList.id);
-    this.apiservice.addSystem_Gaisei(this.SystemList).subscribe(
-      (Response) => {
+    (await this.apiservice.addSystem_Gaisei(this.SystemList)).subscribe(
+      (response) => {
         alert("追加しました。");
       },
       (error) => {

@@ -13,6 +13,7 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <th rowspan="3">削除</th>
       <th rowspan="3">情報システムID</th>
       <th rowspan="3">区分</th>
       <th rowspan="3">情報システム名</th>
@@ -130,7 +131,14 @@
 
   <tbody>
     <!--列名の先頭を小文字にしないと取得できない-->
-    <tr *ngFor="let dataItem of SystemList">
+    <tr *ngFor="let dataItem of SystemList" [class.hide]="dataItem.isDelete">
+      <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+        </svg>
+      </button>
       <td>{{dataItem.id}}</td>
       <td>{{dataItem.kubun}}</td>
       <td>{{dataItem.systemName}}</td>
