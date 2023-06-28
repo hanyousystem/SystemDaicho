@@ -89,8 +89,6 @@ export class ShowSystemComponent_Gaisei implements OnInit {
 
   }
   editClick(SystemID: string) {
-    this.getUserID();
-    this.getAD(this.UserID.userid);
     let isIDExit = false;
     let kamei!: string;
     for (const item of this.SystemList) {
@@ -103,9 +101,6 @@ export class ShowSystemComponent_Gaisei implements OnInit {
     if (!isIDExit) {
       alert("IDが見つかりません");
       return;
-    }
-    if (kamei != this.UserAD.sectionName) {
-      alert("所属課室のIDを指定してください")
     }
     console.log(kamei);
     this.userdataservice.setUserdata(SystemID);
