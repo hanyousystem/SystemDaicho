@@ -39,6 +39,13 @@ public class inHouseSystemController_Gaisei : ControllerBase
         return data;
 
     }
+    [HttpGet("maxid")]
+    public async Task<ActionResult<string>> GetMaxID()
+    {
+        var maxID = await _context.Systems_Gaisei.MaxAsync(s => s.ID);
+        return maxID;
+
+    }
 
     // PUTリクエストに対するアクションメソッドの指定
     [HttpPut("{id}")]

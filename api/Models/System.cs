@@ -75,4 +75,6 @@ public partial class inHouseSystems
     public string? ChosaKibo_ChkCnt { get; set; }
     public string? ChosaKibo_ListCnt { get; set; }
     public string? ChosaKibo_KekkahyoCnt { get; set; }
+
+    public bool? isDelete { get; set; }
 }
