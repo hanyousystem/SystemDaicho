@@ -43,6 +43,7 @@ public class inHouseSystemController_Gaisei : ControllerBase
     public async Task<ActionResult<MaxID>> GetNextID()
     {
         var data = await _context.Systems_Gaisei.MaxAsync(s => s.ID);
+        Console.WriteLine(data.ToString());
         var maxID = data.ToString();
         var maxIDNum = int.Parse(maxID.Substring(1));
         var nextID = maxIDNum + 1;

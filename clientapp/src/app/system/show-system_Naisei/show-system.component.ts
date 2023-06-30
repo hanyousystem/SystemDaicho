@@ -4,6 +4,9 @@ import { Naisei } from '../Models/Naise';
 import { Injectable } from '@angular/core';
 import { UserdataService } from 'src/app/userdata.service';
 import { max } from 'rxjs';
+import { UserAD } from '../Models/UserAD';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-show-system',
@@ -18,9 +21,15 @@ export class ShowSystemComponent implements OnInit {
   SystemIdFilter = ""; // システムIDフィルター
   shukanKashitsuFilter = ""; // システム名フィルター
   SystemListWithoutFilter: any = []; // フィルター前のシステムリスト
+  userAD!: UserAD
   @ViewChild('closebutton') closebutton?: ElementRef;
 
   ngOnInit(): void {
+    this.userdataservice.getUserAD().then(
+      data => {
+        this.userAD = data;
+      }
+    )
     this.refreshDepList(); // 初期表示時にシステムリストを更新する
   }
 
@@ -73,17 +82,6 @@ export class ShowSystemComponent implements OnInit {
 
   // システム追加ボタンがクリックされた場合
   addClick() {
-    let maxtID = 0;
-    for (const item of this.SystemList) {
-      const idNumber = parseInt(item.id.slice(1));
-      if (maxtID < idNumber) {
-        maxtID = idNumber;
-      }
-    }
-    const nextID = `N${(maxtID + 1).toString().padStart(5, '0')}`;
-    console.log(nextID);
-    this.userdataservice.setUserdata(nextID);
-
   }
   editClick(SystemID: string) {
     let isIDExit = false;
@@ -95,14 +93,25 @@ export class ShowSystemComponent implements OnInit {
         break;
       }
     }
-    if (!isIDExit) {
-      alert("IDが見つかりません");
-      return;
+    if (isIDExit && kamei == this.userAD.sectionName.slice(2)) {
+      this.userdataservice.setUserdata(SystemID);
+      this.router.navigate([`sytem_Naisei/edit/` + SystemID])
     }
-    console.log(kamei);
-    this.userdataservice.setUserdata(SystemID);
+    else {
+      if (!isIDExit) {
+        alert("IDが見つかりません");
+        return
+      }
+      else {
+        alert("所属課室のIDを指定してください");
+      }
+    }
   }
   deleteClick(item: Naisei) {
+    if (item.shukanKashitsu != this.userAD.sectionName.slice(2)) {
+      alert("所属課室のIDを指定してください。");
+      return;
+    }
     if (confirm('削除しますか?')) {
       item.isDelete = true;
       this.service.updateSystem(item).subscribe(data => {
@@ -116,7 +125,14 @@ export class ShowSystemComponent implements OnInit {
     this.ActivateAddEditSystemComp = false;
     this.refreshDepList();
   }
+  goBack(): void {
+    this.location.back();
+  }
 
-
-  constructor(private service: ApiserviceService, private userdataservice: UserdataService) { }
+  constructor(
+    private service: ApiserviceService,
+    private userdataservice: UserdataService,
+    private location: Location,
+    private router: Router,
+  ) { }
 }

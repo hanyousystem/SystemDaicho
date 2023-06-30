@@ -1,3 +1,3 @@
 export interface UserID {
-    userid: string
+    userID: string
 }

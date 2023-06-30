@@ -4,6 +4,8 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 import { Naisei, NaiseiSystem } from '../Models/Naise';
 import { Location } from '@angular/common';
 import { MaxID } from '../Models/MaxID';
+import { UserAD } from '../Models/UserAD';
+import { Log } from '../Models/Logs';
 @Component({
   selector: 'app-add-naisei',
   templateUrl: './add-naisei.component.html',
@@ -13,12 +15,19 @@ export class AddNaiseiComponent {
 
   SystemList = new NaiseiSystem();
   systemid!: string;
+  userAD!: UserAD;
   constructor(
     private userdataservice: UserdataService,
     private apiservice: ApiserviceService,
     private location: Location,
   ) { }
-  ngOnInit() {
+  async ngOnInit() {
+    await this.userdataservice.getUserAD().then(
+      data => {
+        this.userAD = data;
+      }
+    )
+    this.SystemList.shukanKashitsu = this.userAD.sectionName.slice(2);
   }
 
   async getID(): Promise<MaxID> {
@@ -36,11 +45,16 @@ export class AddNaiseiComponent {
 
   async addSystem() {
     this.SystemList.id = (await this.getID()).id; // ID を取得して反映する
-    console.log(this.SystemList.id);
-
+    const log: Log = {
+      userID: this.userAD.userID,
+      section: this.userAD.sectionName,
+      dateTime: new Date(),
+    };
+    await this.apiservice.postlog(log);
     (await this.apiservice.addSystem(this.SystemList)).subscribe(
       (response) => {
         alert("追加しました。");
+        this.goBack();
       },
       (error) => {
         alert("追加に失敗しましたもう一度確認してください。");

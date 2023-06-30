@@ -1,9 +1,9 @@
 <a routerLink="/sytem_Naisei/add" (click)="addClick()" class="btn btn-primary">
   追加
 </a>
-<a routerLink="/sytem_Naisei/edit/{{SystemID}}" (click)="editClick(SystemID)" class="btn btn-primary">
+<button (click)="editClick(SystemID)" class="btn btn-primary">
   更新:
-</a>
+</button>
 <tr>
   <input class="update" [(ngModel)]="SystemID">
 </tr>

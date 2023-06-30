@@ -5,6 +5,9 @@ import { Naisei } from './system/Models/Naise';
 import { Gaisei } from './system/Models/Gaisei';
 import settings from './URLconfig.json';
 import { MaxID } from './system/Models/MaxID';
+import { UserID } from './system/Models/UserID';
+import { UserAD } from './system/Models/UserAD';
+import { Log } from './system/Models/Logs';
 
 @Injectable({
   providedIn: 'root'
@@ -50,19 +53,29 @@ export class ApiserviceService {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.put<Naisei>(settings.apiUrl_Gaisei + `/` + dept.id, dept, httpOptions);
   }
-  getUserData(): Observable<any> {
+  getUserData(): Observable<UserID> {
     const httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    return this.http.get<any>(settings.getUserdataURL, httpOptions);
+    return this.http.get<UserID>(settings.getUserdataURL, httpOptions);
   }
-  getADData(userid: string): Observable<any> {
+  getADData(userid: string): Observable<UserAD> {
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
-    return this.http.get<any>(settings.getADURL + '/' + userid, httpOptions)
+    return this.http.get<UserAD>(settings.getADURL + '/' + userid, httpOptions)
   }
 
   deleteSystem(Id: string): Observable<number> {  // システムを削除するAPI呼び出し
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
     return this.http.delete<number>(settings.apiUrl + "/" + Id, httpOptions);
+  }
+  PostChangeLog(data: Log): Observable<Log> {
+    const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
+    return this.http.post<Log>(settings.PostLogs, data, httpOptions);
+  }
+  postlog(data: Log) {
+    let response;
+    this.PostChangeLog(data).subscribe(
+      data => response = data
+    );
   }
 }

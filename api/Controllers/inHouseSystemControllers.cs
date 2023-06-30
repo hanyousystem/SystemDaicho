@@ -41,27 +41,19 @@ public class inHouseSystemController : ControllerBase
     }
 
 
-    [HttpGet("maxid")]
-    /*   public async Task<ActionResult<string>> GetMaxID()
-       {
-           var data = await _context.Systems.MaxAsync(s => s.ID);
-           string maxID = data.ToString();
-           var maxIDNum = int.Parse(maxID.Substring(1));
-           var nextID = maxIDNum + 1;
-           return "N" + nextID.ToString("00000");
-
-       }
-       */
     [HttpGet("nextID")]
     public async Task<ActionResult<MaxID>> GetNextID()
     {
         var data = await _context.Systems.MaxAsync(s => s.ID);
+        Console.WriteLine(data.ToString());
         var maxID = data.ToString();
         var maxIDNum = int.Parse(maxID.Substring(1));
         var nextID = maxIDNum + 1;
         return new MaxID { id = "N" + nextID.ToString("00000") };
 
     }
+
+
 
 
     // PUTリクエストに対するアクションメソッドの指定
@@ -97,6 +89,7 @@ public class inHouseSystemController : ControllerBase
         // 更新が成功した場合は204を返す
         return NoContent();
     }
+
 
     // POSTリクエストに対するアクションメソッドの指定
     [HttpPost]

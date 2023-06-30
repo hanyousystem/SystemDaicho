@@ -5,6 +5,8 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 import { Location } from '@angular/common';
 import { NaiseiSystem } from '../Models/Naise';
 import { MaxID } from '../Models/MaxID';
+import { UserAD } from '../Models/UserAD';
+import { Log } from '../Models/Logs';
 
 @Component({
   selector: 'app-add-gaisei',
@@ -14,14 +16,21 @@ import { MaxID } from '../Models/MaxID';
 export class AddGaiseiComponent {
   SystemList!: GaiseiSystem;
   messege!: string;
+  userAD!: UserAD;
   constructor(
     private userdataservice: UserdataService,
     private apiservice: ApiserviceService,
     private location: Location,
   ) { }
   systemid!: MaxID;
-  ngOnInit() {
+  async ngOnInit() {
     this.SystemList = new GaiseiSystem
+    await this.userdataservice.getUserAD().then(
+      data => {
+        this.userAD = data;
+      }
+    )
+    this.SystemList.shukanKashitsu = this.userAD.sectionName.slice(2);
   }
 
   async getID(): Promise<MaxID> {
@@ -39,10 +48,17 @@ export class AddGaiseiComponent {
 
   async addSystem() {
     this.SystemList.id = (await this.getID()).id; // ID を取得して反映する
-    console.log(this.SystemList.id);
+    const log: Log = {
+      userID: this.userAD.userID,
+      section: this.userAD.sectionName,
+      dateTime: new Date(),
+    };
+    await this.apiservice.postlog(log);
+
     (await this.apiservice.addSystem_Gaisei(this.SystemList)).subscribe(
       (response) => {
         alert("追加しました。");
+        this.goBack();
       },
       (error) => {
         alert("追加に失敗しましたもう一度確認してください。");

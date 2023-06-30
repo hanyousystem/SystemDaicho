@@ -1,8 +1,9 @@
 {
-     "apiUrl" : "https://localhost:7043/inHouseSystem",
-     "apiUrl_Gaisei" : "https://localhost:7043/inHouseSystemController_Gaisei",
-     "apiUrl2" : "https://localhost:7043/Process"  ,
-     "apiUrl3" : "https://localhost:7043/SystemCategories",
-     "getUserdataURL" :"https://localhost:7043/nsc/adinfo/userinfo",
-     "getADURL" : "https:localhost:7043/nsc/adinfo/ActiveDirectoryinfo/"
+     "apiUrl": "https://localhost:7043/inHouseSystem",
+     "apiUrl_Gaisei": "https://localhost:7043/inHouseSystemController_Gaisei",
+     "apiUrl2": "https://localhost:7043/Process",
+     "apiUrl3": "https://localhost:7043/SystemCategories",
+     "getUserdataURL": "https://localhost:7043/ChangeLog/userid",
+     "getADURL": "https://localhost:7043/ChangeLog/userad",
+     "PostLogs": "https://localhost:7043/ChangeLog"
 }
