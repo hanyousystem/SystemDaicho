@@ -7,6 +7,7 @@ import { max } from 'rxjs';
 import { UserAD } from '../Models/UserAD';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { Log } from '../Models/Logs';
 
 @Component({
   selector: 'app-show-system',
@@ -114,6 +115,12 @@ export class ShowSystemComponent implements OnInit {
     }
     if (confirm('削除しますか?')) {
       item.isDelete = true;
+      const log: Log = {
+        userID: this.userAD.userID,
+        section: this.userAD.sectionName,
+        dateTime: new Date(),
+      };
+      this.service.postlog(log);
       this.service.updateSystem(item).subscribe(data => {
         this.refreshDepList();
       })

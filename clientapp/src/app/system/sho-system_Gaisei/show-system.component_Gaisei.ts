@@ -5,6 +5,7 @@ import { UserID } from '../Models/UserID';
 import { UserAD } from '../Models/UserAD';
 import { Gaisei } from '../Models/Gaisei';
 import { Router } from '@angular/router';
+import { Log } from '../Models/Logs';
 
 @Component({
   selector: 'app-show-system_Gaisei',
@@ -125,6 +126,12 @@ export class ShowSystemComponent_Gaisei implements OnInit {
     }
     if (confirm('削除しますか?')) {
       item.isDelete = true;
+      const log: Log = {
+        userID: this.userAD.userID,
+        section: this.userAD.sectionName,
+        dateTime: new Date(),
+      };
+      this.service.postlog(log);
       this.service.updateSystem_Gaisei(item).subscribe(data => {
         this.refreshDepList();
         if (Response) { alert(item.id + `を削除しました。`) }
