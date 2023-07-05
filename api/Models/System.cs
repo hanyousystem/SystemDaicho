@@ -75,4 +75,11 @@ public partial class inHouseSystems
     public string? ChosaKibo_ChkCnt { get; set; }
     public string? ChosaKibo_ListCnt { get; set; }
     public string? ChosaKibo_KekkahyoCnt { get; set; }
+
+    public bool? isDelete { get; set; }
+
+    public static implicit operator string?(inHouseSystems? v)
+    {
+        throw new NotImplementedException();
+    }
 }

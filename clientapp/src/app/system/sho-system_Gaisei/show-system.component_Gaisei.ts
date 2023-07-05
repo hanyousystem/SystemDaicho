@@ -3,6 +3,9 @@ import { ApiserviceService } from 'src/app/apiservice.service';
 import { UserdataService } from 'src/app/userdata.service';
 import { UserID } from '../Models/UserID';
 import { UserAD } from '../Models/UserAD';
+import { Gaisei } from '../Models/Gaisei';
+import { Router } from '@angular/router';
+import { Log } from '../Models/Logs';
 
 @Component({
   selector: 'app-show-system_Gaisei',
@@ -15,7 +18,7 @@ export class ShowSystemComponent_Gaisei implements OnInit {
   ActivateAddEditSystemComp: boolean = false; // システム追加・編集のアクティブ状態
   SystemID!: string;
   UserID!: UserID;
-  UserAD!: UserAD;
+  userAD!: UserAD;
 
   SystemIdFilter = ""; // システムIDフィルター
   shukanKashituFilter = ""; // システム名フィルター
@@ -23,6 +26,11 @@ export class ShowSystemComponent_Gaisei implements OnInit {
   @ViewChild('closebutton') closebutton?: ElementRef;
 
   ngOnInit(): void {
+    this.userdataservice.getUserAD().then(
+      data => {
+        this.userAD = data;
+      }
+    )
     this.refreshDepList(); // 初期表示時にシステムリストを更新する
   }
 
@@ -88,8 +96,6 @@ export class ShowSystemComponent_Gaisei implements OnInit {
 
   }
   editClick(SystemID: string) {
-    this.getUserID();
-    this.getAD(this.UserID.userid);
     let isIDExit = false;
     let kamei!: string;
     for (const item of this.SystemList) {
@@ -99,20 +105,36 @@ export class ShowSystemComponent_Gaisei implements OnInit {
         break;
       }
     }
-    if (!isIDExit) {
-      alert("IDが見つかりません");
+    if (isIDExit && kamei == this.userAD.sectionName.slice(2)) {
+      this.userdataservice.setUserdata(SystemID);
+      this.router.navigate([`sytem_Gaisei/edit/` + SystemID])
+    }
+    else {
+      if (!isIDExit) {
+        alert("IDが見つかりません");
+        return
+      }
+      else {
+        alert("所属課室のIDを指定してください");
+      }
+    }
+  }
+  deleteClick(item: Gaisei) {
+    if (item.shukanKashitsu != this.userAD.sectionName.slice(2)) {
+      alert("所属課室のIDを指定してください");
       return;
     }
-    if (kamei != this.UserAD.sectionName) {
-      alert("所属課室のIDを指定してください")
-    }
-    console.log(kamei);
-    this.userdataservice.setUserdata(SystemID);
-  }
-  deleteClick(item: any) {
     if (confirm('削除しますか?')) {
-      this.service.deleteSystem(item.Id).subscribe(data => {
+      item.isDelete = true;
+      const log: Log = {
+        userID: this.userAD.userID,
+        section: this.userAD.sectionName,
+        dateTime: new Date(),
+      };
+      this.service.postlog(log);
+      this.service.updateSystem_Gaisei(item).subscribe(data => {
         this.refreshDepList();
+        if (Response) { alert(item.id + `を削除しました。`) }
       })
     }
   }
@@ -131,10 +153,11 @@ export class ShowSystemComponent_Gaisei implements OnInit {
     )
   }
   getAD(id: string) {
-    this.service.getADData(id).subscribe(data => { this.UserAD = data; })
+    this.service.getADData(id).subscribe(data => { this.userAD = data; })
   }
 
   constructor(private service: ApiserviceService,
-    private userdataservice: UserdataService
+    private userdataservice: UserdataService,
+    private router: Router
   ) { }
 }

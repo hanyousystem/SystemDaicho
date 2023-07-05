@@ -1,17 +1,20 @@
 <a routerLink="/sytem_Naisei/add" (click)="addClick()" class="btn btn-primary">
   追加
 </a>
-<a routerLink="/sytem_Naisei/edit/{{SystemID}}" (click)="editClick(SystemID)" class="btn btn-primary">
+<button (click)="editClick(SystemID)" class="btn btn-primary">
   更新:
-</a>
+</button>
 <tr>
   <input class="update" [(ngModel)]="SystemID">
 </tr>
 
 
+
 <!-- <div class="table-contents"> -->
 <table class="table table-striped">
   <thead>
+    <th rowspan="70">削除</th>
+
     <tr>
       <!-- <th rowspan="3">編集・削除</th> -->
       <th rowspan="3">
@@ -68,15 +71,15 @@
       <th rowspan="2">内線番号</th>
 
       <th rowspan="2">進行管理システム</th>
-      <th rowspan="2" style="border-right: none;">チェックシステム</th>
-      <th style="border-left: none;"></th>
+      <th rowspan="2">チェックシステム </th>
+      <th rowspan="2">データチェックプログラム作成支援システム </th>
 
-      <th rowspan="2">訂正システム</th>
+      <th colspan="3">サマリーシステム</th>
       <th rowspan="2">個別データ作成</th>
-      <th rowspan="2" style="border-right: none;">サマリーシステム</th>
-      <th colspan="2" style="border-left: none;"></th>
-      <th rowspan="2" style="border-right: none;">審査システム</th>
-      <th style="border-left: none;"></th>
+      <th rowspan="2"> 訂正システム</th>
+      <th rowspan="2"> 審査システム</th>
+      <th rowspan="2"> Adam-Report</th>
+
       <th rowspan="2">その他のシステム（内容を入力）</th>
 
       <th colspan="6">プログラム本数</th>
@@ -112,12 +115,9 @@
     </tr>
 
     <tr>
-      <th>データチェックプログラム作成支援システム</th>
-
+      <th>サマリーシステム</th>
       <th>汎用サマリーシステム</th>
       <th>汎用DBサマリーシステム</th>
-
-      <th>Adam-Report</th>
 
       <th>VB.net</th>
       <th>C#</th>
@@ -157,17 +157,15 @@
   </thead>
   <tbody>
     <!--列名の先頭を小文字にしないと取得できない-->
-    <tr *ngFor="let dataItem of SystemList">
+    <tr *ngFor="let dataItem of SystemList" [class.hide]="dataItem.isDelete">
       <!--削除ボタン-->
-      <!-- <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
-            <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd"
-                d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
-            </svg>
-          </button> 
-        </td> -->
-
+      <button type="button" class="btn btn-light mr-1" (click)="deleteClick(dataItem)">
+        <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
+          xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd"
+            d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5a.5.5 0 0 0-1 0v7a.5.5 0 0 0 1 0v-7z" />
+        </svg>
+      </button>
       <td>{{dataItem.id}}</td>
       <td>{{dataItem.kubun}}</td>
       <td>{{dataItem.systemName}}</td>

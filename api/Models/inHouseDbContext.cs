@@ -25,31 +25,23 @@ namespace systeminventory_sample.Models.DbFirst
         //    Config =configuration;
         //}
         // ProcessControlテーブルに対応するDbSet
-        public virtual DbSet<ProcessControl> ProcessControls { get; set; } = null!;
 
         // inHouseSystemテーブルに対応するDbSet
         // テーブルを取得⇒列名が同じ名前のプロパティに対してセットを行うため、テーブルの列名がずれていないか確認
         public virtual DbSet<inHouseSystems> Systems { get; set; } = null!;
         // inHouseSystemテーブルに対応するDbSet
         public virtual DbSet<inHouseSystem_Gaisei> Systems_Gaisei { get; set; } = null!;
+        public DbSet<ChangeLog> ChangeLogs { get; set; } = null!;
         // SystemCategoryテーブルに対応するDbSet
-        public virtual DbSet<SystemCategory> SystemCategories { get; set; } = null!;
 
         // DbContextOptionsBuilderに対しての設定
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            // データベース接続文字列の設定
-            optionsBuilder.UseSqlite(ConfigPath);
-            // optionsBuilder.UseSqlServer(ConfigPath);
-        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // ProcessControlテーブルの定義
-            modelBuilder.Entity<ProcessControl>(entity =>
+            modelBuilder.Entity<ChangeLog>(entity =>
             {
                 entity
-                    .HasNoKey()
-                    .ToTable("ProcessControl"); // ProcessControlテーブルに対応するテーブル名
+                    .ToTable("ChangeLog");
             });
 
             // inHouseSystemテーブルの定義
@@ -64,12 +56,6 @@ namespace systeminventory_sample.Models.DbFirst
             {
                 entity
                     .ToTable("Gaisei"); // inHouseSystemテーブルに対応するテーブル名
-            });
-
-            // SystemCategoryテーブルの定義
-            modelBuilder.Entity<SystemCategory>(entity =>
-            {
-                entity.HasNoKey(); // 主キーの定義がないことを設定
             });
 
             // モデル生成完了時の処理（部分メソッド）

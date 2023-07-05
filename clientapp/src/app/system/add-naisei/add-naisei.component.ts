@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
-import { Naisei } from '../Models/Naise';
+import { Naisei, NaiseiSystem } from '../Models/Naise';
 import { Location } from '@angular/common';
+import { MaxID } from '../Models/MaxID';
+import { UserAD } from '../Models/UserAD';
+import { Log } from '../Models/Logs';
 @Component({
   selector: 'app-add-naisei',
   templateUrl: './add-naisei.component.html',
@@ -10,104 +13,57 @@ import { Location } from '@angular/common';
 })
 export class AddNaiseiComponent {
 
-  SystemList!: Naisei;
-  messege!: string;
+  SystemList = new NaiseiSystem();
+  systemid!: string;
+  userAD!: UserAD;
   constructor(
     private userdataservice: UserdataService,
     private apiservice: ApiserviceService,
     private location: Location,
   ) { }
-  systemid!: string;
-  ngOnInit() {
-    this.systemid = this.userdataservice.getUserdata();
-    this.SystemList = this.dummyObject;
+  async ngOnInit() {
+    await this.userdataservice.getUserAD().then(
+      data => {
+        this.userAD = data;
+      }
+    )
+    this.SystemList.shukanKashitsu = this.userAD.sectionName.slice(2);
   }
 
-  addSystem() {
-    this.SystemList.id = this.systemid
-    console.log(this.SystemList.id);
-    this.apiservice.addSystem(this.SystemList).subscribe(
-      (Response) => {
+  async getID(): Promise<MaxID> {
+    return new Promise<MaxID>((resolve, reject) => {
+      this.apiservice.getMaxID_Naisei().subscribe(
+        data => {
+          resolve(data); // 解決した ID を返す
+        },
+        error => {
+          reject(error); // エラー発生時に reject() を呼び出す
+        }
+      );
+    });
+  }
+
+  async addSystem() {
+    this.SystemList.id = (await this.getID()).id; // ID を取得して反映する
+    const log: Log = {
+      userID: this.userAD.userID,
+      section: this.userAD.sectionName,
+      dateTime: new Date(),
+    };
+    await this.apiservice.postlog(log);
+    (await this.apiservice.addSystem(this.SystemList)).subscribe(
+      (response) => {
         alert("追加しました。");
+        this.goBack();
       },
       (error) => {
         alert("追加に失敗しましたもう一度確認してください。");
       }
     );
   }
+
+
   goBack(): void {
     this.location.back();
-  }
-
-  dummyObject: Naisei = {
-    id: '',
-    kubun: '',
-    systemName: '',
-    gaiyo: '',
-    shukanKashitsu: '',
-    sekinin_Shozoku: '',
-    sekinin_Name: '',
-    renraku_Shozoku: '',
-    renraku_Name: '',
-    renraku_Naisen: '',
-    sysType_ProgressSys: '',
-    sysType_ChkSys: '',
-    sysType_ChkSupportSys: '',
-    sysType_CrtSys: '',
-    sysType_Kobetsu: '',
-    sysType_Summary: '',
-    sysType_HanyoSummary: '',
-    sysType_DBSummary: '',
-    sysType_Shinsa: '',
-    sysType_Adam: '',
-    sysType_Other: '',
-    devKaihatsu_PGMCnt_VBNet: '',
-    devKaihatsu_PGMCnt_CSharp: '',
-    devKaihatsu_PGMCnt_VBA: '',
-    devKaihatsu_PGMCnt_Access: '',
-    devKaihatsu_PGMCnt_R: '',
-    devKaihatsu_PGMCnt_Other: '',
-    devKaihatsu_LOC_VBNET: '',
-    devKaihatsu_LOC_CSharp: '',
-    devKaihatsu_LOC_VBA: '',
-    devShisa_PGMCnt_VBNET: '',
-    devShisa_PGMCnt_CSharp: '',
-    devShisa_PGMCnt_VBA: '',
-    devShisa_PGMCnt_Access: '',
-    devShisa_PGMCnt_R: '',
-    devShisa_PGMCnt_Other: '',
-    devShisa_LOC_VBNET: '',
-    devShisa_LOC_Csharp: '',
-    devShisa_LOC_VBA: '',
-    devOther_PGMCnt_VBNET: '',
-    devOther_PGMCnt_CSharp: '',
-    devOther_PGMCnt_VBA: '',
-    devOther_PGMCnt_Access: '',
-    devOther_PGMCnt_R: '',
-    devOther_PGMCnt_Other: '',
-    devOther_LOC_VBNET: '',
-    devOther_LOC_CSharp: '',
-    devOther_LOC_VBA: '',
-    user_Center: '',
-    user_Kyoku: '',
-    user_OtherSeifu: '',
-    user_Localgovernment: '',
-    user_Ippan: '',
-    sysConfig: '',
-    lineType_IE: '',
-    lineType_SeifuNW: '',
-    lineType_SINET: '',
-    lineType_LGWIN: '',
-    lineType_Other: '',
-    infoType_Kimitsu3: '',
-    infoType_Kimitsu2: '',
-    infoType_Kanzen2: '',
-    infoType_Kayo2: '',
-    handlingInfoLimit: '',
-    chosaKibo_ChosaCnt: '',
-    chosaKibo_ChkCnt: '',
-    chosaKibo_ListCnt: '',
-    chosaKibo_KekkahyoCnt: '',
-
   }
 }

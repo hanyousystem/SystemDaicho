@@ -39,6 +39,17 @@ public class inHouseSystemController_Gaisei : ControllerBase
         return data;
 
     }
+    [HttpGet("nextID")]
+    public async Task<ActionResult<MaxID>> GetNextID()
+    {
+        var data = await _context.Systems_Gaisei.MaxAsync(s => s.ID);
+        Console.WriteLine(data.ToString());
+        var maxID = data.ToString();
+        var maxIDNum = int.Parse(maxID.Substring(1));
+        var nextID = maxIDNum + 1;
+        return new MaxID { id = "N" + nextID.ToString("00000") };
+
+    }
 
     // PUTリクエストに対するアクションメソッドの指定
     [HttpPut("{id}")]
@@ -83,7 +94,8 @@ public class inHouseSystemController_Gaisei : ControllerBase
         // 変更をデータベースに保存
         await _context.SaveChangesAsync();
         // 追加したシステムを返す
-        return CreatedAtAction(nameof(GetSystems), new { id = system.ID }, system);
+
+        return NoContent();
     }
 
 }

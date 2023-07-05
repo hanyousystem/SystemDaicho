@@ -3,6 +3,8 @@ import { Gaisei } from '../Models/Gaisei';
 import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Location } from '@angular/common';
+import { UserAD } from '../Models/UserAD';
+import { Log } from '../Models/Logs';
 
 @Component({
   selector: 'app-edit-gaisei',
@@ -12,6 +14,7 @@ import { Location } from '@angular/common';
 export class EditGaiseiComponent {
   SystemList!: Gaisei;
   systemid!: string;
+  userAD!: UserAD;
   constructor(
     private userdataservice: UserdataService,
     private apiservice: ApiserviceService,
@@ -19,8 +22,12 @@ export class EditGaiseiComponent {
   ) { }
   ngOnInit() {
     this.systemid = this.userdataservice.getUserdata();
-    console.log(this.systemid);
     this.getuserdata(this.systemid);
+    this.userdataservice.getUserAD().then(
+      data => {
+        this.userAD = data;
+      }
+    )
   }
 
   getuserdata(id: string) {
@@ -29,9 +36,21 @@ export class EditGaiseiComponent {
     );
   }
   updateSystem() {
+    if (this.SystemList.shukanKashitsu != this.userAD.sectionName.slice(2)) {
+      alert("所属課室の課室名を入力してください");
+      return;
+    }
     this.apiservice.updateSystem_Gaisei(this.SystemList).subscribe(res => {
+      const log: Log = {
+        userID: this.userAD.userID,
+        section: this.userAD.sectionName,
+        dateTime: new Date(),
+      };
+      this.apiservice.postlog(log);
       console.log("updateSystem")
       if (res === null) {
+        alert("更新しました。");
+        this.goBack();
         console.log("updateSystem callback1")
         console.log("updateSystem callback2")
       } else {
