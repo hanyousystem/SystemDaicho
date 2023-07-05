@@ -41,6 +41,21 @@ public class inHouseSystemController : ControllerBase
     }
 
 
+    [HttpGet("nextID")]
+    public async Task<ActionResult<MaxID>> GetNextID()
+    {
+        var data = await _context.Systems.MaxAsync(s => s.ID);
+        Console.WriteLine(data.ToString());
+        var maxID = data.ToString();
+        var maxIDNum = int.Parse(maxID.Substring(1));
+        var nextID = maxIDNum + 1;
+        return new MaxID { id = "N" + nextID.ToString("00000") };
+
+    }
+
+
+
+
     // PUTリクエストに対するアクションメソッドの指定
     [HttpPut("{id}")]
     public async Task<IActionResult> PutSystem(string id, systeminventory_sample.Models.DbFirst.inHouseSystems system)
@@ -75,10 +90,12 @@ public class inHouseSystemController : ControllerBase
         return NoContent();
     }
 
+
     // POSTリクエストに対するアクションメソッドの指定
     [HttpPost]
     public async Task<IActionResult> PostSystem(inHouseSystems system)
     {
+        if (system.ID is null) { return BadRequest(); }
         // システムをデータベースに追加
         _context.Systems.Add(system);
         // 変更をデータベースに保存
@@ -87,6 +104,8 @@ public class inHouseSystemController : ControllerBase
 
         return NoContent();
     }
+
+
 
 }
 

@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AddEditSystemComponent } from './system/add-edit-system/add-edit-system.component';
 import { ShowSystemComponent } from './system/show-system_Naisei/show-system.component';
 
 import { ApiserviceService } from './apiservice.service';
@@ -20,7 +19,6 @@ import { AddGaiseiComponent } from './system/add-gaisei/add-gaisei.component';
 @NgModule({
   declarations: [
     AppComponent,
-    AddEditSystemComponent,
     ShowSystemComponent,
     ShowSystemComponent_Gaisei,
     AddNaiseiComponent,
