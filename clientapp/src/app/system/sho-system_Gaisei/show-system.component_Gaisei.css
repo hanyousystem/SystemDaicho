@@ -1,19 +1,21 @@
 table {
   border: 1px black solid;
   /* margin-right:0; */
-  margin-left: -70px;
-  width: 600%;
+  margin-left: -4rem;
+  width: 595rem;
   /* collapsだと固定ヘッダの罫線が消える */
   border-collapse: separate;
-  border-spacing: 0px;
+  border-spacing: 0;
  /* table-layout: fixed; */
   white-space: pre-wrap;
   box-sizing: content-box;
+  font-size: 1rem;
 }
 
  thead th{
   position: sticky;
   text-align: center;
+
   background-color: #fff;
   z-index: 3;
 }
@@ -25,41 +27,48 @@ tbody td{
 
 /* ヘッダ固定（縦スクロール用） */
 .table-striped thead tr:nth-of-type(1) th{
-  top:0px;
+  top:0rem;
 }
 .table-striped thead tr:nth-of-type(2) th{
-  top:57.5px;
+  top:2.35rem;
 }
 
 .table-striped thead tr:nth-of-type(3) th{
-  top:94.5px;
+  top:4.68rem;
 }
+/* 
+.table-striped thead tr:nth-of-type(2) th{
+  top:37.5rem;
+}
+
+.table-striped thead tr:nth-of-type(3) th{
+  top:75.5px;
+} */
 
 /* ヘッダ固定（横スクロール用）ヘッダ全体はZ-indexを3で設定しているため、固定させる列だけZ-indexを4にする */
 /* 削除～システム名まで固定 */
 .table-striped thead tr:nth-of-type(1) th:nth-of-type(1){
-  left:0px;
+  left:0rem;
   z-index: 4;
 }
 .table-striped thead tr:nth-of-type(1) th:nth-of-type(2){
-  left:59px;
+  left:3.5rem;
   z-index: 4;
 }
 .table-striped thead tr:nth-of-type(1) th:nth-of-type(3){
-  left:118px;
+  left:7rem;
   z-index: 4;
 }
 .table-striped thead tr:nth-of-type(2) th:nth-of-type(1){
-  left:118px;
+  left:7rem;
   z-index: 4;
 }
 .table-striped thead tr:nth-of-type(1) th:nth-of-type(4){
-  left:255px;
-  
+  left:15.75rem;
   z-index: 4;
 }
 .table-striped thead tr:nth-of-type(1) th:nth-of-type(5){
-  left:347px;
+  left:24.1rem;
   z-index: 4;
 }
 
@@ -70,23 +79,22 @@ tbody td{
   z-index: 1;
 }
 .table-striped td:nth-of-type(2){
-  left:59px;
-  z-index: 1;
-}
-.table-striped td:nth-of-type(3){
-  
-  left:118px;
-  z-index: 1;
-}
-.table-striped td:nth-of-type(4){
-  left:255px;
-  z-index: 1;
-}
-.table-striped td:nth-of-type(5){
-  left:347px;
+  left:3.5rem;
   z-index: 1;
 }
 
+.table-striped td:nth-of-type(3){
+  left:7rem;
+  z-index: 1;
+}
+.table-striped td:nth-of-type(4){
+  left:15.75rem;
+  z-index: 1;
+}
+.table-striped td:nth-of-type(5){
+  left:24.1rem;
+  z-index: 1;
+}
 
 
 th {
@@ -120,5 +128,5 @@ td {
 
 .buttonproperty
 {
-  margin-left: -70px;
+  margin-left: -4rem;
 }
