@@ -12,9 +12,11 @@ import { Log } from './system/Models/Logs';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class ApiserviceService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {} 
 
   // Department
   getSystemList(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し

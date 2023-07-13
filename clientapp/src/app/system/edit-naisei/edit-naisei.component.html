@@ -10,7 +10,7 @@
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">区分</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.kubun">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.kubun"list="listkubun">
     </div>
 
     <div class="input-group mb-12">
@@ -37,8 +37,12 @@
         <input type="text" class="form-control" [(ngModel)]=" SystemList.sekinin_Name">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">情報システム責任者 氏名</span>
+        <span class="input-group-text">連絡担当者 役職及び所属</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.renraku_Shozoku">
+    </div>
+    <div class="input-group mb-12">
+        <span class="input-group-text">連絡担当者 氏名</span>
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.renraku_Name">
     </div>
     <div class=" input-group mb-12">
         <span class="input-group-text">連絡担当者 内線番号</span>
@@ -227,23 +231,23 @@
 
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 インターネット</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_IE">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_IE" list="listumu">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 政府共通NW</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SeifuNW">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SeifuNW" list="listumu">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 SINET</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SINET">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SINET" list="listumu">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 LGWIN</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_LGWIN">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_LGWIN" list="listumu">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 その他</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_Other">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_Other" list="listumu">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">取り扱う情報の格付け 機密性3情報</span>
