@@ -8,7 +8,6 @@ import { MaxID } from './system/Models/MaxID';
 import { UserID } from './system/Models/UserID';
 import { UserAD } from './system/Models/UserAD';
 import { Log } from './system/Models/Logs';
-import * as fs from 'fs';
 
 // let requestURL = "C:\\Users\\e-Stat\\Documents\\SystemDaicho\\clientapp\\src\\app\\URLconfig.json";//jsonへのパス
 // let request = new XMLHttpRequest();
