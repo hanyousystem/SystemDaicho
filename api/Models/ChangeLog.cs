@@ -6,4 +6,5 @@ public class ChangeLog
     public string? Section { get; set; }
     [Key]
     public DateTime? DateTime { get; set; }
+    public string? Operation { get; set; }
 }

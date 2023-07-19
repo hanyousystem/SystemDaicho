@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
-import { Naisei } from '../Models/Naise';
+import { Naisei } from '../Models/Naisei';
 import { Injectable } from '@angular/core';
 import { UserdataService } from 'src/app/userdata.service';
 import { max } from 'rxjs';
@@ -119,6 +119,7 @@ export class ShowSystemComponent implements OnInit {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
         dateTime: new Date(),
+        operation: '削除',
       };
       this.service.postlog(log);
       this.service.updateSystem(item).subscribe(data => {

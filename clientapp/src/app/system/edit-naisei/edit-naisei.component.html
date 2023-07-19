@@ -10,7 +10,14 @@
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">区分</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.kubun"list="listkubun">
+        <!-- <input type="text" class="form-control" [(ngModel)]=" SystemList.kubun"> -->
+        <select class="form-control" [(ngModel)]="SystemList.kubun">
+            <option hidden>{{SystemList.kubun}}</option>
+            <option value="センター調査系" selected>センター調査系</option>
+            <option value="センター業務系" selected>センター業務系</option>
+            <option value="センター基盤系" selected>センター基盤系</option>
+            <option value="政府基盤系" selected>政府基盤系</option>
+        </select>
     </div>
 
     <div class="input-group mb-12">
@@ -231,23 +238,23 @@
 
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 インターネット</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_IE" list="listumu">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_IE">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 政府共通NW</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SeifuNW" list="listumu">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SeifuNW">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 SINET</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SINET" list="listumu">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_SINET">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 LGWIN</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_LGWIN" list="listumu">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_LGWIN">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 その他</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_Other" list="listumu">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.lineType_Other">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">取り扱う情報の格付け 機密性3情報</span>

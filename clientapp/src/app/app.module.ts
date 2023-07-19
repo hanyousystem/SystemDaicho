@@ -11,7 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
-import { ShowSystemComponent_Gaisei } from './system/sho-system_Gaisei/show-system.component_Gaisei';
+import { ShowSystemComponent_Gaisei } from './system/show-system_Gaisei/show-system.component_Gaisei';
 import { AddNaiseiComponent } from './system/add-naisei/add-naisei.component';
 import { EditNaiseiComponent } from './system/edit-naisei/edit-naisei.component';
 import { EditGaiseiComponent } from './system/edit-gaisei/edit-gaisei.component';

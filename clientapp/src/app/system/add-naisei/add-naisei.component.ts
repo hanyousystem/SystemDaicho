@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
-import { Naisei, NaiseiSystem } from '../Models/Naise';
+import { Naisei, NaiseiSystem } from '../Models/Naisei';
 import { Location } from '@angular/common';
 import { MaxID } from '../Models/MaxID';
 import { UserAD } from '../Models/UserAD';
@@ -49,6 +49,7 @@ export class AddNaiseiComponent {
       userID: this.userAD.userID,
       section: this.userAD.sectionName,
       dateTime: new Date(),
+      operation:'挿入'
     };
     await this.apiservice.postlog(log);
     (await this.apiservice.addSystem(this.SystemList)).subscribe(

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Naisei } from '../Models/Naise';
+import { Naisei } from '../Models/Naisei';
 import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Location } from '@angular/common';
@@ -45,6 +45,7 @@ export class EditNaiseiComponent {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
         dateTime: new Date(),
+        operation: '更新',
       };
       this.apiservice.postlog(log);
       console.log("updateSystem")

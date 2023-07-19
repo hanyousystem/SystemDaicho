@@ -1,27 +1,76 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Naisei } from './system/Models/Naise';
+import { Naisei } from './system/Models/Naisei';
 import { Gaisei } from './system/Models/Gaisei';
 import settings from './URLconfig.json';
 import { MaxID } from './system/Models/MaxID';
 import { UserID } from './system/Models/UserID';
 import { UserAD } from './system/Models/UserAD';
 import { Log } from './system/Models/Logs';
+import * as fs from 'fs';
 
+// let requestURL = "C:\\Users\\e-Stat\\Documents\\SystemDaicho\\clientapp\\src\\app\\URLconfig.json";//jsonへのパス
+// let request = new XMLHttpRequest();
+// request.open('GET', requestURL);
+// request.responseType = 'json';
+// request.send();
+
+type urlConfig = {
+  apiUrl: string,
+  apiUrl_Gaisei:string,
+  apiUrl2: string,
+  apiUrl3: string,
+  getUserdataURL: string,
+  getADURL: string,
+  PostLogs: string
+}
+
+// function GetData(){
+//   let data  = request.response;
+//   return JSON.parse(JSON.stringify(data)) as urlConfig
+// }
+// const user = GetData
+// const data  = fs.readFileSync('./URLConfig.json', 'utf-8');
+// const jsonData:urlConfig = JSON.parse(data);
+// const data :urlConfig = require('./URLconfig.json');
+// async function GetURLConfig() {
+//   const url = './URLconfig.json'
+//   const res: Response = await fetch(url)
+//   return await res.json() as urlConfig
+// }
+
+
+// JSONデータをJavaScriptオブジェクトに変換
+
+ 
+// import { URLConfigReader } from './URLConfigReader';
 @Injectable({
   providedIn: 'root'
 })
 
-
 export class ApiserviceService {
 
-  constructor(private http: HttpClient) {} 
+  // constructor(private http: HttpClient ,private urlconfigreader: URLConfigReader) { }
 
-  // Department
+  constructor(private http: HttpClient ) { }
+  
+  // getSystemList(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し
+  //   return this.http.get<any[]>(jsonData.apiUrl);
+  // }
+
   getSystemList(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し
     return this.http.get<any[]>(settings.apiUrl);
   }
+
+  // getSystemList(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し
+  //   data = GetURLConfig().then((config:urlConfig)=>{return config.apiUrl})
+  //   return this.http.get<any[]>();
+  // }
+
+  // getSystemList(): Observable<any[]> {  // システムの一覧を取得するAPI呼び出し
+  //   return this.http.get<any[]>(this.urlconfigreader.getURL("apiUrl"));
+  // }
   getMaxID_Naisei(): Observable<MaxID> {  // システムの一覧を取得するAPI呼び出し
     return this.http.get<MaxID>(settings.apiUrl + "/nextID");
   }

@@ -7,13 +7,13 @@
     </button>
     <div class="input-group mb-12">
         <span class="input-group-text">区分</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.kubun" list="listkubun">
-        <datalist id="listkubun">
-            <option value="センター調査系">
-            <option value="センター業務系">
-            <option value="センター基盤系">
-            <option value="政府基盤系">
-        </datalist>
+        <select class="form-control" [(ngModel)]="SystemList.kubun">
+            <option hidden>{{SystemList.kubun}}</option>
+            <option value="センター調査系" selected>センター調査系</option>
+            <option value="センター業務系" selected>センター業務系</option>
+            <option value="センター基盤系" selected>センター基盤系</option>
+            <option value="政府基盤系" selected>政府基盤系</option>
+        </select>
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">情報システム名</span>

@@ -19,13 +19,6 @@ namespace systeminventory_sample.Models.DbFirst
         }
         //appsetting.jsonを設定
         public static string ConfigPath { get; set; } = null!;
-        //private static IConfiguration Config { get; set; }= null!;
-        // public static void configurationInitialize(IConfiguration configuration)
-        // {
-        //    Config =configuration;
-        //}
-        // ProcessControlテーブルに対応するDbSet
-
         // inHouseSystemテーブルに対応するDbSet
         // テーブルを取得⇒列名が同じ名前のプロパティに対してセットを行うため、テーブルの列名がずれていないか確認
         public virtual DbSet<inHouseSystems> Systems { get; set; } = null!;
@@ -41,7 +34,7 @@ namespace systeminventory_sample.Models.DbFirst
             modelBuilder.Entity<ChangeLog>(entity =>
             {
                 entity
-                    .ToTable("ChangeLog");
+                    .ToTable("UserOpeLog");
             });
 
             // inHouseSystemテーブルの定義
@@ -55,7 +48,7 @@ namespace systeminventory_sample.Models.DbFirst
             modelBuilder.Entity<inHouseSystem_Gaisei>(entity =>
             {
                 entity
-                    .ToTable("Gaisei"); // inHouseSystemテーブルに対応するテーブル名
+                    .ToTable("Gaisei_test"); // inHouseSystemテーブルに対応するテーブル名
             });
 
             // モデル生成完了時の処理（部分メソッド）

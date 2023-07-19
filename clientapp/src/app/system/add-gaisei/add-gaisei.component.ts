@@ -3,7 +3,7 @@ import { Gaisei, GaiseiSystem } from '../Models/Gaisei';
 import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Location } from '@angular/common';
-import { NaiseiSystem } from '../Models/Naise';
+import { NaiseiSystem } from '../Models/Naisei';
 import { MaxID } from '../Models/MaxID';
 import { UserAD } from '../Models/UserAD';
 import { Log } from '../Models/Logs';
@@ -52,6 +52,7 @@ export class AddGaiseiComponent {
       userID: this.userAD.userID,
       section: this.userAD.sectionName,
       dateTime: new Date(),
+      operation:'挿入'
     };
     await this.apiservice.postlog(log);
 

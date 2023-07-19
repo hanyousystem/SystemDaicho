@@ -45,6 +45,7 @@ export class EditGaiseiComponent {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
         dateTime: new Date(),
+        operation:'更新'
       };
       this.apiservice.postlog(log);
       console.log("updateSystem")
