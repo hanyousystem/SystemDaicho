@@ -5,7 +5,6 @@ using System.Text;
 using System.IO;
 using systeminventory_sample;
 
-//このクラス自体がEntrypointの役割を担っている
 var builder = WebApplication.CreateBuilder(args);
 
 //内製のデータを作成
