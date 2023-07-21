@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Naisei } from './system/Models/Naisei';
 import { ApiserviceService } from './apiservice.service';
 import { UserAD } from './system/Models/UserAD';
 

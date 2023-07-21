@@ -1,16 +1,18 @@
-<div class="p-2 w-100 bd-highlight">
-    <button (click)="updateSystem()" class="btn btn-primary">
-        更新ボタン
+<div class="form-left">
+<div class="p-2 w-100 bd-highlight" >
+    <button scrolled-position (click)="updateSystem()" class="btn btn-primary">
+        更新
     </button>
     <button (click)="goBack()" class="btn btn-primary">戻る</button>
 
+    <!-- 読み取り項目 -->
     <div class="input-group mb-12">
-        <span class="input-group-text">情報システムID</span>
+        <span class="input-group-text">情報システムID（編集不可）</span>
         <span class="form-control">{{SystemList.id}}</span>
     </div>
+
     <div class="input-group mb-12">
         <span class="input-group-text">区分</span>
-        <!-- <input type="text" class="form-control" [(ngModel)]=" SystemList.kubun"> -->
         <select class="form-control" [(ngModel)]="SystemList.kubun">
             <option hidden>{{SystemList.kubun}}</option>
             <option value="センター調査系" selected>センター調査系</option>
@@ -25,16 +27,17 @@
         <input type="text" class="form-control" [(ngModel)]=" SystemList.systemName">
     </div>
 
-    <div class="input-group mb-12">
+    <div class="form-group">
         <span class="input-group-text">概要</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.gaiyo">
+        <textarea  rows="5" cols="80" class="form-control" [(ngModel)]=" SystemList.gaiyo"></textarea>
     </div>
 
+   <!-- 読み取り項目 -->
     <div class="input-group mb-12">
-        <span class="input-group-text">主観課室名</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.shukanKashitsu">
+        <span class="input-group-text">主管課室名（編集不可）</span>
+        <span class="form-control">{{SystemList.shukanKashitsu}}</span>
     </div>
-
+   
     <div class="input-group mb-12">
         <span class="input-group-text">情報システム責任者 所属及び役職</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.sekinin_Shozoku">
@@ -85,7 +88,7 @@
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">システム種別 汎用DBサマリーシステム</span>
-        <input type="text" class="form-control" [(ngModel)]=" SystemList.sysType_Shinsa">
+        <input type="text" class="form-control" [(ngModel)]=" SystemList.sysType_DBSummary">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">システム種別 審査システム</span>
@@ -101,27 +104,27 @@
     </div>
 
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（開発） VB.NET</span>
+        <span class="input-group-text">開発規模（開発）プログラム本数   VB.NET</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devKaihatsu_PGMCnt_VBNet">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（開発） C#</span>
+        <span class="input-group-text">開発規模（開発）プログラム本数   C#</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devKaihatsu_PGMCnt_CSharp">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（開発） ExcelVBA</span>
+        <span class="input-group-text">開発規模（開発）プログラム本数   ExcelVBA</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devKaihatsu_PGMCnt_VBA">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（開発） Access</span>
+        <span class="input-group-text">開発規模（開発）プログラム本数   Access</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devKaihatsu_PGMCnt_Access">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（開発） R</span>
+        <span class="input-group-text">開発規模（開発）プログラム本数   R</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devKaihatsu_PGMCnt_R">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（開発） その他</span>
+        <span class="input-group-text">開発規模（開発）プログラム本数   その他</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devKaihatsu_PGMCnt_Other">
     </div>
     <div class="input-group mb-12">
@@ -138,27 +141,27 @@
     </div>
 
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（審査） VB.NET</span>
+        <span class="input-group-text">開発規模（審査）プログラム本数   VB.NET</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devShisa_PGMCnt_VBNET">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（審査） C#</span>
+        <span class="input-group-text">開発規模（審査）プログラム本数   C#</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devShisa_PGMCnt_CSharp">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（審査） ExcelVBA</span>
+        <span class="input-group-text">開発規模（審査）プログラム本数   ExcelVBA</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devShisa_PGMCnt_VBA">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（審査） Access</span>
+        <span class="input-group-text">開発規模（審査）プログラム本数   Access</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devShisa_PGMCnt_Access">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（審査） R</span>
+        <span class="input-group-text">開発規模（審査）プログラム本数   R</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devShisa_PGMCnt_R">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（審査） その他</span>
+        <span class="input-group-text">開発規模（審査）プログラム本数   その他</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devShisa_PGMCnt_Other">
     </div>
     <div class="input-group mb-12">
@@ -175,27 +178,27 @@
     </div>
 
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（その他） VB.NET</span>
+        <span class="input-group-text">開発規模（その他）プログラム本数   VB.NET</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devOther_PGMCnt_VBNET">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（その他） C#</span>
+        <span class="input-group-text">開発規模（その他）プログラム本数   C#</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devOther_PGMCnt_CSharp">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（その他） ExcelVBA</span>
+        <span class="input-group-text">開発規模（その他）プログラム本数   ExcelVBA</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devOther_PGMCnt_VBA">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（その他） Access</span>
+        <span class="input-group-text">開発規模（その他）プログラム本数   Access</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devOther_PGMCnt_Access">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（その他） R</span>
+        <span class="input-group-text">開発規模（その他）プログラム本数   R</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devOther_PGMCnt_R">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発規模（その他） その他</span>
+        <span class="input-group-text">開発規模（その他）プログラム本数   その他</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.devOther_PGMCnt_Other">
     </div>
     <div class="input-group mb-12">
@@ -232,7 +235,7 @@
         <input type="text" class="form-control" [(ngModel)]=" SystemList.user_Ippan">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">利用者属性 システム構成</span>
+        <span class="input-group-text">システム構成（概要フロー等）</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.sysConfig">
     </div>
 
@@ -293,4 +296,5 @@
         <span class="input-group-text">調査機関 結果表数</span>
         <input type="text" class="form-control" [(ngModel)]=" SystemList.chosaKibo_KekkahyoCnt">
     </div>
+</div>
 </div>

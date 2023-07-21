@@ -6,6 +6,7 @@ import { UserAD } from '../Models/UserAD';
 import { Gaisei } from '../Models/Gaisei';
 import { Router } from '@angular/router';
 import { Log } from '../Models/Logs';
+import dayjs from "dayjs";
 
 @Component({
   selector: 'app-show-system_Gaisei',
@@ -129,7 +130,7 @@ export class ShowSystemComponent_Gaisei implements OnInit {
       const log: Log = {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
-        dateTime: new Date(),
+        dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         operation:'削除'
       };
       this.service.postlog(log);

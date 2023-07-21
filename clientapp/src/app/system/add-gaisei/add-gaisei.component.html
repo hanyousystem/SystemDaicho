@@ -1,3 +1,4 @@
+<div class="form-left">
 <div class="p-2 w-100 bd-highlight">
     <button (click)="addSystem()" class="btn btn-primary">
         追加
@@ -15,36 +16,40 @@
             <option value="政府基盤系" selected>政府基盤系</option>
         </select>
     </div>
-    <div class="input-group mb-12">
+    <div class=" input-group mb-12">
         <span class="input-group-text">情報システム名</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.systemName">
     </div>
-    <div class="input-group mb-12">
+
+    <div class="form-group">
         <span class="input-group-text">概要</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.gaiyo">
+        <textarea  rows="5" cols="80" class="form-control" [(ngModel)]=" SystemList.gaiyo"></textarea>
     </div>
+
+   <!-- 読み取り項目 -->
     <div class="input-group mb-12">
-        <span class="input-group-text">主管課室名</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.shukanKashitsu">
+        <span class="input-group-text">主管課室名（編集不可）</span>
+        <span class="form-control">{{SystemList.shukanKashitsu}}</span>
     </div>
+   
     <div class="input-group mb-12">
-        <span class="input-group-text">情報システム責任者所属及び役職</span>
+        <span class="input-group-text">情報システム責任者 所属及び役職</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.sekinin_Shozoku">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">情報システム責任者氏名</span>
+        <span class="input-group-text">情報システム責任者 氏名</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.sekinin_Name">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">連絡担当者所属及び役職</span>
+        <span class="input-group-text">連絡担当者 所属及び役職</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.renraku_Shozoku">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">連絡担当者氏名</span>
+        <span class="input-group-text">連絡担当者 氏名</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.renraku_Name">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">連絡担当者内線番号</span>
+        <span class="input-group-text">連絡担当者 内線番号</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.renraku_Naisen">
     </div>
     <div class="input-group mb-12">
@@ -56,70 +61,105 @@
         <input type="text" class="form-control" [(ngModel)]="SystemList.jikiKoukai">
     </div>
 
-    <datalist id="listumu">
-        <option value="有り">
-        <option value="ー">
-    </datalist>
-
     <div class="input-group mb-12">
         <span class="input-group-text">利用者属性 統計センター内</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.user_Center" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.user_Center">
+            <option hidden>{{SystemList.user_Center}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select>
     </div>
 
     <div class="input-group mb-12">
         <span class="input-group-text">利用者属性 統計局</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.user_Kyoku"  list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.user_Kyoku">
+            <option hidden>{{SystemList.user_Kyoku}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select>
     </div>
 
     <div class="input-group mb-12">
         <span class="input-group-text">利用者属性 他の政府機関</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.user_Seifu" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.user_Seifu">
+            <option hidden>{{SystemList.user_Seifu}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select>
     </div>
+
     <div class="input-group mb-12">
         <span class="input-group-text">利用者属性 地方公共団体</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.user_Localgovernment" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.user_Localgovernment">
+            <option hidden>{{SystemList.user_Localgovernment}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select>
     </div>
+
     <div class="input-group mb-12">
         <span class="input-group-text">利用者属性 一般利用者（国民等）</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.user_Ippan" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.user_Ippan">
+            <option hidden>{{SystemList.user_Ippan}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select>
     </div>
+
     <div class="input-group mb-12">
         <span class="input-group-text">国、地方、他法人のシステムとの連携</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.system_Coope">
     </div>
 
     <div class="input-group mb-12">
-        <span class="input-group-text">規模等想定利用者数(人)</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.kibo_Cnt" list="listsouteinin">
-        <datalist id="listsouteinin">
-            <option value="100未満">
-            <option value="100以上1,000未満">
-            <option value="1,000以上1万未満">
-            <option value="1万以上10万未満">    
-            <option value="10万以上">   
-            <option value="想定なし">
-        </datalist>  
+        <span class="input-group-text">規模等 想定利用者数(人)</span>
+        <select class="form-control" [(ngModel)]="SystemList.kibo_Cnt">
+            <option hidden>{{SystemList.kibo_Cnt}}</option>
+            <option value="100未満" selected>100未満</option>
+            <option value="100以上1,000未満" selected>100以上1,000未満</option>
+            <option value="1,000以上1万未満" selected>1,000以上1万未満</option>
+            <option value="1万以上10万未満" selected>1万以上10万未満</option>
+            <option value="10万以上" selected>10万以上</option>
+            <option value="想定なし" selected>想定なし</option>
+        </select> 
     </div>
 
     <div class="input-group mb-12">
-        <span class="input-group-text">規模等Webサーバ年間PV数</span>
+        <span class="input-group-text">規模等 Webサーバ年間PV数</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.kibo_PV">
     </div>
+
     <div class="input-group mb-12">
         <span class="input-group-text">取り扱う情報の格付 機密性３情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.infoType_Kimitsu3" list="listumu">
+        <select class="form-control"  [(ngModel)]="SystemList.infoType_Kimitsu3">
+            <option hidden>{{SystemList.infoType_Kimitsu3}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">取り扱う情報の格付 機密性２情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.infoType_Kimitsu2" list="listumu">
+        <select class="form-control"  [(ngModel)]="SystemList.infoType_Kimitsu2">
+            <option hidden>{{SystemList.infoType_Kimitsu2}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">取り扱う情報の格付 完全性２情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.infoType_Kanzen2" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.infoType_Kanzen2">
+            <option hidden>{{SystemList.infoType_Kanzen2}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">取り扱う情報の格付 可用性２情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.infoType_Kayo2" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.infoType_Kayo2">
+            <option hidden>{{SystemList.infoType_Kayo2}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">取り扱う情報の取扱制限</span>
@@ -127,79 +167,107 @@
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">個人情報 個人情報の取扱</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.kojin_Toriatsukai" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.kojin_Toriatsukai">
+            <option hidden>{{SystemList.kojin_Toriatsukai}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">個人情報 特定個人情報の取扱</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.kojin_Tokutei" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.kojin_Tokutei">
+            <option hidden>{{SystemList.kojin_Tokutei}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">システム種別</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.systemType" list="listsystemtype">
-        <datalist id="listsystemtype">
-            <option value="基盤のみ">
-            <option value="基盤＋アプリケーション">
-            <option value="アプリケーションのみ">
-        </datalist>  
+        <select class="form-control" [(ngModel)]="SystemList.systemType">
+            <option hidden>{{SystemList.systemType}}</option>
+            <option value="基盤のみ" selected>基盤のみ</option>
+            <option value="基盤＋アプリケーション" selected>基盤＋アプリケーション</option>
+            <option value="アプリケーションのみ" selected>アプリケーションのみ</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">開発方式 開発方式</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.dev_Way" list="listdev">
-        <datalist id="listdev">
-            <option value="スクラッチ開発">
-            <option value="ソフトウェアパッケージカスタマイズ開発">
-            <option value="スクラッチ・カスタマイズ開発の混合">
-            <option value="ソフトウェアパッケージの活用（カスタマイズなし）">
-            <option value="その他">
-        </datalist>  
+        <select class="form-control" [(ngModel)]="SystemList.dev_Way">
+            <option hidden>{{SystemList.dev_Way}}</option>
+            <option value="スクラッチ開発" selected>スクラッチ開発</option>
+            <option value="ソフトウェアパッケージカスタマイズ開発" selected>ソフトウェアパッケージカスタマイズ開発</option>
+            <option value="スクラッチ・カスタマイズ開発の混合" selected>スクラッチ・カスタマイズ開発の混合</option>
+            <option value="ソフトウェアパッケージの活用（カスタマイズなし）" selected>ソフトウェアパッケージの活用（カスタマイズなし）</option>
+            <option value="その他" selected>その他</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">開発方式 その他の場合の内容</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.dev_Other">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発アプリケーションLOC(Kstep)</span>
+        <span class="input-group-text">開発アプリケーション LOC(Kstep)</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.app_LOC">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発アプリケーション画面数</span>
+        <span class="input-group-text">開発アプリケーション 画面数</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.app_GamenCnt">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">開発アプリケーション帳票数</span>
+        <span class="input-group-text">開発アプリケーション 帳票数</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.app_ChohyoCnt">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">物理サーバ等物理サーバ等設置拠点数</span>
+        <span class="input-group-text">物理サーバ等 物理サーバ等設置拠点数</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.server_BaseCnt">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">物理サーバ等うちバックアップ拠点数</span>
+        <span class="input-group-text">物理サーバ等 うちバックアップ拠点数</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.server_BackupCnt">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">物理サーバ等物理サーバ台数</span>
+        <span class="input-group-text">物理サーバ等 物理サーバ台数</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.server_Cnt">
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 インターネット</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.lineType_IE" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.lineType_IE">
+            <option hidden>{{SystemList.lineType_IE}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 政府共通NW</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.lineType_SeifuNW" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.lineType_SeifuNW">
+            <option hidden>{{SystemList.lineType_SeifuNW}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 SINET</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.lineType_SINET" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.lineType_SINET">
+            <option hidden>{{SystemList.lineType_SINET}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 LGWAN</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.lineType_LGWIN" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.lineType_LGWIN">
+            <option hidden>{{SystemList.lineType_LGWIN}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">通信する統計センター外通信回線の種別 その他</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.lineType_Other" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.lineType_Other">
+            <option hidden>{{SystemList.lineType_Other}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">パッケージ名</span>
@@ -210,12 +278,12 @@
         <input type="text" class="form-control" [(ngModel)]="SystemList.packageDev">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">クラウドサービス利用 情報利用有無</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.cloudService_UserUmu" list="listcloudumu">
-        <datalist id="listcloudumu">
-            <option value="有り">
-            <option value="無し">
-        </datalist>  
+        <span class="input-group-text">クラウドサービス利用情報 利用有無</span>
+        <select class="form-control" [(ngModel)]="SystemList.cloudService_UserUmu">
+            <option hidden>{{SystemList.cloudService_UserUmu}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="無し" selected>無し</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">クラウドサービス利用情報 クラウドサービス名</span>
@@ -247,19 +315,35 @@
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">クラウドサービス利用情報 取り扱う情報の格付 機密性３情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.cloudService_Kimitsu3" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.cloudService_Kimitsu3">
+            <option hidden>{{SystemList.cloudService_Kimitsu3}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">クラウドサービス利用情報 取り扱う情報の格付 機密性２情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.cloudService_Kimitsu2" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.cloudService_Kimitsu2">
+            <option hidden>{{SystemList.cloudService_Kimitsu2}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">クラウドサービス利用情報 取り扱う情報の格付 完全性２情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.cloudService_Kanzen2" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.cloudService_Kanzen2">
+            <option hidden>{{SystemList.cloudService_Kanzen2}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">クラウドサービス利用情報 取り扱う情報の格付 可用性２情報</span>
-        <input type="text" class="form-control" [(ngModel)]="SystemList.cloudService_Kayo2" list="listumu">
+        <select class="form-control" [(ngModel)]="SystemList.cloudService_Kayo2">
+            <option hidden>{{SystemList.cloudService_Kayo2"}}</option>
+            <option value="有り" selected>有り</option>
+            <option value="ー" selected>ー</option>
+        </select> 
     </div>
     <div class="input-group mb-12">
         <span class="input-group-text">クラウドサービス利用情報 取り扱う情報の取扱制限</span>
@@ -274,63 +358,59 @@
         <input type="text" class="form-control" [(ngModel)]="SystemList.mokuhyoRate">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の導入・更改契約情報請負事業者</span>
+        <span class="input-group-text">直近の導入・更改契約情報 請負事業者</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.donyu_Jigyosha">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の導入・更改契約情報導入(更改)時期</span>
+        <span class="input-group-text">直近の導入・更改契約情報 導入(更改)時期</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.donyu_Jiki">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の導入・更改契約情報契約額(千円)</span>
+        <span class="input-group-text">直近の導入・更改契約情報 契約額(千円)</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.donyu_Price">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の保守・賃貸借等契約情報請負事業者</span>
+        <span class="input-group-text">直近の保守・賃貸借等契約情報 請負事業者</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.hoshu_Jigyosha">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の保守・賃貸借等契約情報保守・賃貸借等期間契約開始</span>
+        <span class="input-group-text">直近の保守・賃貸借等契約情報 保守・賃貸借等期間 契約開始</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.hoshu_Start">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の保守・賃貸借等契約情報保守・賃貸借等期間契約終了</span>
+        <span class="input-group-text">直近の保守・賃貸借等契約情報 保守・賃貸借等期間 契約終了</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.hoshu_End">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の保守・賃貸借等契約情報契約額(千円)</span>
+        <span class="input-group-text">直近の保守・賃貸借等契約情報 契約額(千円)</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.hoshu_Price">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の保守・賃貸借等契約情報導入・更改と同一契約か</span>
+        <span class="input-group-text">直近の保守・賃貸借等契約情報 導入・更改と同一契約か</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.hoshu_SameDonyu">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の運用契約情報請負事業者</span>
+        <span class="input-group-text">直近の運用契約情報 請負事業者</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.unyo_Jigyosha">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の運用契約情報運用期間契約開始</span>
+        <span class="input-group-text">直近の運用契約情報 運用期間 契約開始</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.unyo_Start">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の運用契約情報運用期間契約終了</span>
+        <span class="input-group-text">直近の運用契約情報 運用期間 契約終了</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.unyo_End">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の運用契約情報契約額(千円)</span>
+        <span class="input-group-text">直近の運用契約情報 契約額(千円)</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.unyo_Price">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の運用契約情報導入・更改と同一契約か</span>
+        <span class="input-group-text">直近の運用契約情報 導入・更改と同一契約か</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.unyo_SameDonyu">
     </div>
     <div class="input-group mb-12">
-        <span class="input-group-text">直近の運用契約情報保守・賃貸借と同一契約か</span>
+        <span class="input-group-text">直近の運用契約情報 保守・賃貸借と同一契約か</span>
         <input type="text" class="form-control" [(ngModel)]="SystemList.unyo_SameHoshu">
     </div>
-
-
-
-
 </div>

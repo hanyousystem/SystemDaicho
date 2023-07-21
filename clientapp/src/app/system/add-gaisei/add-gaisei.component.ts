@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { Gaisei, GaiseiSystem } from '../Models/Gaisei';
+import { GaiseiSystem } from '../Models/Gaisei';
 import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Location } from '@angular/common';
-import { NaiseiSystem } from '../Models/Naisei';
 import { MaxID } from '../Models/MaxID';
 import { UserAD } from '../Models/UserAD';
 import { Log } from '../Models/Logs';
+import dayjs from "dayjs";
 
 @Component({
   selector: 'app-add-gaisei',
@@ -51,7 +51,7 @@ export class AddGaiseiComponent {
     const log: Log = {
       userID: this.userAD.userID,
       section: this.userAD.sectionName,
-      dateTime: new Date(),
+      dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
       operation:'挿入'
     };
     await this.apiservice.postlog(log);

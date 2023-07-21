@@ -12,18 +12,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add database context to DI container using SQLite database.
 builder.Services.AddDbContext<inHouseDbContext>(options =>
 {
-    //var path = builder.Configuration.GetConnectionString("inHouseDbConnection");
-    //options.UseSqlite(path);
     var path = builder.Configuration.GetConnectionString("SQLConnection");
     DbContextOptionsBuilder dbContextOptionsBuilder = options.UseSqlServer(path);
     inHouseDbContext.ConfigPath = path;
 });
 builder.Services.AddLogging(options => options.AddConsole());
-//appsetting.jsonを設定
-//IConfiguration config = new ConfigurationBuilder()
-//  .AddJsonFile("appsettings.json")
-//.AddEnvironmentVariables()
-//   .Build();
 
 
 // Add controllers to the DI container.
@@ -35,6 +28,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddLogging();
 
+//Windows認証の場合必要処理
 // builder.Services.AddAuthentication(NegotiateDefaults.AuthenticationScheme).AddNegotiate();
 // builder.Services.AddAuthorization(options =>
 // {
@@ -52,8 +46,10 @@ if (app.Environment.IsDevelopment())
 }
 app.ConfigureExceptionHandler(app.Logger);
 
+//Windows認証の場合必要処理
 // app.UseAuthentication();
 // app.UseAuthorization();
+
 // Serve static files from wwwroot folder.
 app.UseStaticFiles();
 // Enable routing middleware to match incoming requests to an endpoint.

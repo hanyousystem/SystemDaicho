@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Naisei } from '../Models/Naisei';
-import { Injectable } from '@angular/core';
 import { UserdataService } from 'src/app/userdata.service';
-import { max } from 'rxjs';
 import { UserAD } from '../Models/UserAD';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { Log } from '../Models/Logs';
+import dayjs from "dayjs";
 
 @Component({
   selector: 'app-show-system',
@@ -115,10 +114,11 @@ export class ShowSystemComponent implements OnInit {
     }
     if (confirm('削除しますか?')) {
       item.isDelete = true;
+      //Datetime型だとUTC時刻になってしまうので＋9時間して、日本時刻とする
       const log: Log = {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
-        dateTime: new Date(),
+        dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         operation: '削除',
       };
       this.service.postlog(log);

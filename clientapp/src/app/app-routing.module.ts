@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import {NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ShowSystemComponent } from './system/show-system_Naisei/show-system.component';
 import { ShowSystemComponent_Gaisei } from './system/show-system_Gaisei/show-system.component_Gaisei';
@@ -20,8 +20,11 @@ const routes: Routes = [
   { path: `sytem_Gaisei/add`, component: AddGaiseiComponent }
 ];
 
+//useHash：ハッシュ(#〜)でパスを表現するモード(angularの404エラー対策)
+//scrollPositionRestoration：各ルーターに設定したページへ遷移した際のカーソルの初期位置
+
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [RouterModule.forRoot(routes, { useHash: true ,scrollPositionRestoration: "top" })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

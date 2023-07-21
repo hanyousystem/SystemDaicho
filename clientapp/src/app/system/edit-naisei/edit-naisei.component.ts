@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef } from '@angular/core';
 import { Naisei } from '../Models/Naisei';
 import { UserdataService } from 'src/app/userdata.service';
 import { ApiserviceService } from 'src/app/apiservice.service';
 import { Location } from '@angular/common';
 import { UserAD } from '../Models/UserAD';
 import { Log } from '../Models/Logs';
+import dayjs from "dayjs";
 
 @Component({
   selector: 'app-edit-naisei',
@@ -29,7 +30,6 @@ export class EditNaiseiComponent {
       }
     )
   }
-
   getuserdata(id: string) {
     this.apiservice.getSystem(id).subscribe(
       data => this.SystemList = data
@@ -44,7 +44,7 @@ export class EditNaiseiComponent {
       const log: Log = {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
-        dateTime: new Date(),
+        dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         operation: '更新',
       };
       this.apiservice.postlog(log);

@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace systeminventory_sample.Models.DbFirst;
+﻿namespace systeminventory_sample.Models.DbFirst;
 
 public partial class inHouseSystem_Gaisei
 {
