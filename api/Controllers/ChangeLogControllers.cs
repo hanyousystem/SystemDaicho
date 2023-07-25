@@ -28,9 +28,10 @@ public class ChangeLogController : ControllerBase
         return NoContent();
     }
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<ChangeLog>>> GetLog()
+    public async Task<ActionResult<ChangeLog>> GetLog(string id)
     {
-        return _context.ChangeLogs.ToList();
+         var data = await _context.ChangeLogs.FindAsync(id);
+        return data;
 
     }
 

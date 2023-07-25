@@ -131,7 +131,9 @@ export class ShowSystemComponent_Gaisei implements OnInit {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
         dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-        operation:'削除'
+        operation:'削除',
+        daichotype:'2',
+        dataID:item.id,
       };
       this.service.postlog(log);
       this.service.updateSystem_Gaisei(item).subscribe(data => {

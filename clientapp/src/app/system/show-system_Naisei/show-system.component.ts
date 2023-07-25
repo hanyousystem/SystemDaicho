@@ -114,12 +114,13 @@ export class ShowSystemComponent implements OnInit {
     }
     if (confirm('削除しますか?')) {
       item.isDelete = true;
-      //Datetime型だとUTC時刻になってしまうので＋9時間して、日本時刻とする
       const log: Log = {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
         dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
         operation: '削除',
+        daichotype:'1',
+        dataID:item.id,
       };
       this.service.postlog(log);
       this.service.updateSystem(item).subscribe(data => {

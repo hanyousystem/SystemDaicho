@@ -33,22 +33,19 @@ namespace systeminventory_sample.Models.DbFirst
         {
             modelBuilder.Entity<ChangeLog>(entity =>
             {
-                entity
-                .ToTable("UserOpeLog");
+                entity.ToTable("UserOpeLog");
             });
 
             // inHouseSystemテーブルの定義
             modelBuilder.Entity<inHouseSystems>(entity =>
             {
-                entity
-                    .ToTable("NaiseiSystem"); // inHouseSystemテーブルに対応するテーブル名
+                entity.ToTable("NaiseiSystem");
             });
 
             // inHouseSystem_Gaiseiテーブルの定義
             modelBuilder.Entity<inHouseSystem_Gaisei>(entity =>
             {
-                entity
-                    .ToTable("GaiseiSystem"); // inHouseSystemテーブルに対応するテーブル名
+                entity.ToTable("GaiseiSystem"); 
             });
 
             // モデル生成完了時の処理（部分メソッド）

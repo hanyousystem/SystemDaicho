@@ -51,12 +51,15 @@ export class AddNaiseiComponent {
       userID: this.userAD.userID,
       section: this.userAD.sectionName,
       dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-      operation:'挿入'
+      operation:'挿入',
+      daichotype:'1',
+      dataID:this.SystemList.id,
     };
-    await this.apiservice.postlog(log);
+     
     (await this.apiservice.addSystem(this.SystemList)).subscribe(
       (response) => {
         alert("追加しました。");
+        this.apiservice.postlog(log);
         this.goBack();
       },
       (error) => {

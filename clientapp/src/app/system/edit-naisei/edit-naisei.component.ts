@@ -14,26 +14,33 @@ import dayjs from "dayjs";
 })
 export class EditNaiseiComponent {
   SystemList!: Naisei;
-  systemid: any;
+  systemid!: string;
   userAD!: UserAD;
+  initdata!: Naisei;
   constructor(
     private userdataservice: UserdataService,
     private apiservice: ApiserviceService,
     private location: Location,
   ) { }
+
   ngOnInit() {
-    const systemid: string = this.userdataservice.getUserdata();
-    this.getuserdata(systemid);
+    this.systemid = this.userdataservice.getUserdata();
+    this.getuserdata( this.systemid);
+     //編集データを取得し、同時にログ用に編集前データとして保持
+     this.getuserdata(this.systemid).then(data => this.initdata= {...data});
     this.userdataservice.getUserAD().then(
       data => {
         this.userAD = data;
       }
     )
   }
-  getuserdata(id: string) {
-    this.apiservice.getSystem(id).subscribe(
-      data => this.SystemList = data
-    );
+  getuserdata(id: string): Promise<Naisei> {
+    return new Promise<Naisei>((resolve, reject) => {
+      this.apiservice.getSystem(id).subscribe(
+        data => resolve(this.SystemList = data),
+        error => reject(error)
+      );
+    });
   }
   updateSystem() {
     if (this.SystemList.shukanKashitsu != this.userAD.sectionName.slice(2)) {
@@ -45,9 +52,21 @@ export class EditNaiseiComponent {
         userID: this.userAD.userID,
         section: this.userAD.sectionName,
         dateTime: dayjs().format('YYYY-MM-DD HH:mm:ss'),
-        operation: '更新',
+        operation:'更新',
+        daichotype:'1',
+        dataID:this.SystemList.id,
       };
-      this.apiservice.postlog(log);
+      //更新前後の全項目値を確認する
+      for (let i = 0; i < Object.values(this.SystemList).length; i++) {
+        if (Object.values(this.initdata)[i] != Object.values(this.SystemList)[i]) 
+        {  
+          log.UpdateItemName =Object.keys(this.SystemList)[i];
+          log.UpdateBefore =Object.values(this.initdata)[i];
+          log.UpdateAfter =Object.values(this.SystemList)[i];
+          this.apiservice.postlog(log);
+        }
+      }
+
       console.log("updateSystem")
       if (res === null) {
         alert("更新しました。");

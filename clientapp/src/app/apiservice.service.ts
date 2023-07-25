@@ -72,9 +72,8 @@ export class ApiserviceService {
     return this.http.post<Log>(settings.PostLogs, data, httpOptions);
   }
   postlog(data: Log) {
-    let response;
-    this.PostChangeLog(data).subscribe(
-      data => response = data
-    );
+    let response
+    this.PostChangeLog(data).subscribe(      
+      data => response = data);
   }
 }
